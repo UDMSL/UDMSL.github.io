@@ -40,7 +40,7 @@ echo [4] 웹사이트 배포(Deploy)를 시작합니다.
 echo ==============================================
 
 :: 6. npm deploy 실행 (배치파일에서 npm 실행 시 call이 필수입니다)
-call npm run deploy
+call npm run build && npx gh-pages -d dist
 
 echo.
 echo ==============================================
