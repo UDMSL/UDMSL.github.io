@@ -31,7 +31,8 @@ echo ==============================================
 
 :: 5. 메인 브랜치로 푸시 (충돌 방지를 위해 일단 pull 시도 후 push)
 :: 만약 강제로 덮어쓰길 원하면 아래 줄을 'git push -f origin main'으로 바꾸세요.
-git push -u origin main
+::git push -u origin main
+git push -f origin main
 
 echo.
 echo ==============================================
