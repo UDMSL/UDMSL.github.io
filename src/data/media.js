@@ -1,5 +1,5 @@
 export const galleryImages = [
-    { title: "International Conference 2024", img: "https://placehold.co/400x300?text=Conference" },
+    { title: "대한화학회 제 136회 학술발표회 참석", img: "https://placehold.co/400x300?text=KCS+meeting" },
     { title: "Lab Workshop", img: "https://placehold.co/400x300?text=Workshop" },
     { title: "Group Dinner", img: "https://placehold.co/400x300?text=Dinner" },
     { title: "Laser Alignment", img: "https://placehold.co/400x300?text=Experiment" },

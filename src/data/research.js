@@ -12,25 +12,25 @@ export const researchData = {
         {
             title: "Time-resolved PL",
             desc: "나노초에서 마이크로초 영역의 발광 수명을 측정하여 재결합 역학을 규명합니다.",
-            detail: "We utilize time-resolved fluorescence spectroscopy to investigate exciton evolution and energy relaxation...",
+            detail: "We utilize time-resolved fluorescence spectroscopy to investigate exciton evolution and energy relaxation in semiconductor quantum dots and light-harvesting assemblies. This technique allows us to track radiative recombination processes on the nanosecond timescale.",
             img: "https://placehold.co/600x400/1e3a8a/FFF?text=Time+Resolved+PL"
         },
         {
             title: "Ultrafast Transient Absorption",
             desc: "펨토초 레이저를 이용한 펌프-프로브 분광학으로 여기 상태의 흡수 변화를 관측합니다.",
-            detail: "Femtosecond transient absorption spectroscopy allows us to capture snapshots of molecules...",
+            detail: "Femtosecond transient absorption spectroscopy allows us to capture snapshots of molecules in electronically excited states. We investigate charge transfer dynamics in solar cell materials and organic conjugated molecules to understand their fundamental photophysical properties.",
             img: "https://placehold.co/600x400/3b82f6/FFF?text=Transient+Absorption"
         },
         {
             title: "cw & pulsed-EPR",
             desc: "전자 상자성 공명 분광법을 통해 라디칼 및 상자성 결함의 구조와 동역학을 연구합니다.",
-            detail: "We explore spin dynamics and radical intermediates in organic/inorganic reactions...",
+            detail: "We explore spin dynamics and radical intermediates in organic/inorganic reactions. Understanding the behavior of paramagnetic species is crucial for optimizing the efficiency of photocatalysts, fuel cells, and other energy-related materials.",
             img: "https://placehold.co/600x400/f59e0b/FFF?text=EPR+Spectroscopy"
         },
         {
             title: "Time-resolved X-ray Solution Scattering",
             desc: "용액 상의 분자 구조 동역학을 원자 수준의 공간 분해능과 펨토초 시간 분해능으로 직접 관측합니다.",
-            detail: "Using time-resolved X-ray solution scattering, we visualize structural changes of molecules in real-time...",
+            detail: "Using time-resolved X-ray solution scattering, we visualize structural changes of molecules in real-time. This advanced technique acts like a fast camera shutter to freeze atomic motions during chemical reactions, providing direct insights into structural dynamics.",
             img: "https://placehold.co/600x400/4b5563/FFF?text=X-ray+Scattering"
         }
     ]
