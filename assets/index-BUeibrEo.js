@@ -479,6 +479,7 @@ items:
 # items:
 #   - text: "논문 인용문"
 #     doi: "있다면 입력"
+# 새로운 논문일수록 위쪽에 입력하시면 됩니다.
 year: 2025
 items:
   - text: "\\"Two dimensional C3N4 nanoplatelets produced by unzipping of C3N4 nanotubes\\", CARBON, 245, 120789 (2025)."
@@ -509,18 +510,23 @@ img: https://placehold.co/400x300?text=Lunch
 # 작성 예시:
 # date: YYYY-MM-DD
 # title: "제목"
+# img: "/img/photo.jpg" 또는 "https://..."
 # 본문은 프론트매터 아래에 작성합니다.
 date: 2025-11-21
 title: 새로운 홈페이지 개장
+image: https://placehold.co/96x96?text=Homepage
 ---
-우리 연구실의 새로운 홈페이지가 개장했습니다. 감사합니다!
+우리 연구실의 새로운 홈페이지가 개장했습니다.
+감사합니다.
 `,Zr=`---
 # 작성 예시:
 # date: YYYY-MM-DD
 # title: "제목"
+# img: "/img/photo.jpg" 또는 "https://..."
 # 본문은 프론트매터 아래에 작성합니다.
 date: 2025-11-25
 title: 교수님과의 식사
+image: https://placehold.co/96x96?text=Lunch
+preserveLineBreaks: false
 ---
-교수님과 함께하는 점심식사가 있었습니다.
-`,Qr={"../content/news/2025-11-21-new-homepage.md":Xr,"../content/news/2025-11-25-lunch.md":Zr};const $r=Object.entries(Qr).map(([e,t])=>{let{data:n,content:r}=k(t),i=e.split(`/`).pop()?.replace(`.md`,``)??e;return{...n,date:n.date??``,title:n.title??i,content:r,slug:i}}).sort((e,t)=>kn(t.date)-kn(e.date));var ei=()=>(0,j.jsxs)(`div`,{className:`max-w-4xl mx-auto py-12 px-6`,children:[(0,j.jsx)(`h2`,{className:`text-3xl font-bold text-gray-800 mb-8 border-b pb-4`,children:`Lab News`}),(0,j.jsx)(`div`,{className:`space-y-6`,children:$r.map((e,t)=>(0,j.jsxs)(`div`,{className:`bg-white p-6 rounded-lg shadow-sm border border-gray-200`,children:[(0,j.jsx)(`div`,{className:`text-sm text-primary font-bold mb-2`,children:e.date}),(0,j.jsx)(`h3`,{className:`text-xl font-bold text-gray-900 mb-3`,children:e.title}),(0,j.jsx)(`p`,{className:`text-gray-700`,children:e.content})]},t))})]});function ti(){return(0,j.jsx)(j.Fragment,{children:(0,j.jsx)(sn,{children:(0,j.jsx)(rr,{children:(0,j.jsxs)(Ct,{children:[(0,j.jsx)(xt,{path:`/`,element:(0,j.jsx)(mr,{})}),(0,j.jsx)(xt,{path:`/professor`,element:(0,j.jsx)(hr,{})}),(0,j.jsx)(xt,{path:`/members`,element:(0,j.jsx)(Er,{})}),(0,j.jsx)(xt,{path:`/research`,element:(0,j.jsx)(Dr,{})}),(0,j.jsx)(xt,{path:`/publications`,element:(0,j.jsx)(Wr,{})}),(0,j.jsx)(xt,{path:`/gallery`,element:(0,j.jsx)(Yr,{})}),(0,j.jsx)(xt,{path:`/news`,element:(0,j.jsx)(ei,{})}),(0,j.jsx)(xt,{path:`*`,element:(0,j.jsx)(bt,{to:`/`,replace:!0})})]})})})})}var ni=ti;On.createRoot(document.getElementById(`root`)).render((0,j.jsx)(x.StrictMode,{children:(0,j.jsx)(ni,{})}));
+교수님과 함께하는 점심식사가 있었습니다.`,Qr={"../content/news/2025-11-21-new-homepage.md":Xr,"../content/news/2025-11-25-lunch.md":Zr};const $r=Object.entries(Qr).map(([e,t])=>{let{data:n,content:r}=k(t),i=e.split(`/`).pop()?.replace(`.md`,``)??e;return{...n,date:n.date??``,title:n.title??i,content:r,slug:i}}).sort((e,t)=>kn(t.date)-kn(e.date));var ei=()=>(0,j.jsxs)(`div`,{className:`max-w-4xl mx-auto py-12 px-6`,children:[(0,j.jsx)(`h2`,{className:`text-3xl font-bold text-gray-800 mb-8 border-b pb-4`,children:`Lab News`}),(0,j.jsx)(`div`,{className:`space-y-6`,children:$r.map((e,t)=>(0,j.jsx)(`div`,{className:`bg-white p-6 rounded-lg shadow-sm border border-gray-200`,children:(0,j.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,j.jsxs)(`div`,{className:`flex-1`,children:[(0,j.jsx)(`div`,{className:`text-sm text-primary font-bold mb-2`,children:e.date}),(0,j.jsx)(`h3`,{className:`text-xl font-bold text-gray-900 mb-3`,children:e.title}),(0,j.jsx)(`p`,{className:`text-gray-700 whitespace-pre-line`,children:e.content})]}),(0,j.jsx)(`img`,{src:e.image||`https://placehold.co/96x96?text=News`,alt:`${e.title} thumbnail`,className:`w-20 h-20 rounded-full object-cover border border-gray-200 shadow-sm flex-shrink-0`})]})},t))})]});function ti(){return(0,j.jsx)(j.Fragment,{children:(0,j.jsx)(sn,{children:(0,j.jsx)(rr,{children:(0,j.jsxs)(Ct,{children:[(0,j.jsx)(xt,{path:`/`,element:(0,j.jsx)(mr,{})}),(0,j.jsx)(xt,{path:`/professor`,element:(0,j.jsx)(hr,{})}),(0,j.jsx)(xt,{path:`/members`,element:(0,j.jsx)(Er,{})}),(0,j.jsx)(xt,{path:`/research`,element:(0,j.jsx)(Dr,{})}),(0,j.jsx)(xt,{path:`/publications`,element:(0,j.jsx)(Wr,{})}),(0,j.jsx)(xt,{path:`/gallery`,element:(0,j.jsx)(Yr,{})}),(0,j.jsx)(xt,{path:`/news`,element:(0,j.jsx)(ei,{})}),(0,j.jsx)(xt,{path:`*`,element:(0,j.jsx)(bt,{to:`/`,replace:!0})})]})})})})}var ni=ti;On.createRoot(document.getElementById(`root`)).render((0,j.jsx)(x.StrictMode,{children:(0,j.jsx)(ni,{})}));
