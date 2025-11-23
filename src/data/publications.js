@@ -58,15 +58,15 @@ const parsePublicationFile = (raw) => {
     return { year, items };
 };
 
-export const publicationList = Object.entries(files)
-    .flatMap(([path, raw]) => {
-        const { year, items } = parsePublicationFile(raw);
-        return items.map((entry, idx) => ({
-            year,
-            text: entry.text,
-            doi: entry.doi,
-            order: idx,
-            slug: `${year}-${String(idx + 1).padStart(2, '0')}`,
-        }));
-    })
-    .sort((a, b) => b.year - a.year || a.order - b.order);
+const parsedPublications = Object.entries(files)
+    .map(([path, raw]) => parsePublicationFile(raw))
+    .sort((a, b) => b.year - a.year);
+
+export const publicationList = parsedPublications.flatMap(({ year, items }) =>
+    items.map((entry, idx) => ({
+        year,
+        text: entry.text,
+        doi: entry.doi,
+        slug: `${year}-${String(idx + 1).padStart(2, '0')}`,
+    })),
+);
