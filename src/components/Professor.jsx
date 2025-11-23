@@ -15,9 +15,14 @@ const Professor = () => {
                         />
                     </div>
                     <div className="mt-6 space-y-3 text-gray-700 bg-gray-50 p-4 rounded-lg">
-                        <div className="flex items-center gap-2">
-                            <Mail size={16} /> <span>{professorProfile.email}</span>
-                        </div>
+                        {professorProfile.email && (
+                            <a 
+                                href={`mailto:${professorProfile.email}`} 
+                                className="flex items-center gap-2 text-secondary hover:underline"
+                            >
+                                <Mail size={16} /> <span>{professorProfile.email}</span>
+                            </a>
+                        )}
                         <div className="flex items-center gap-2">
                             <Phone size={16} /> <span>{professorProfile.phone}</span>
                         </div>

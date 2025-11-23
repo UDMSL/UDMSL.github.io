@@ -12,9 +12,14 @@ const Members = () => {
                         <div className="min-w-0">
                             <h3 className="font-bold text-gray-800 truncate">{member.name}</h3>
                             <p className="text-primary font-medium text-sm truncate">{member.degree}</p>
-                            <p className="text-gray-500 text-xs flex items-center gap-1 mt-1 truncate">
-                                <Mail size={12} /> <span className="truncate">{member.email}</span>
-                            </p>
+                            {member.email && (
+                                <a 
+                                    href={`mailto:${member.email}`} 
+                                    className="text-gray-500 text-xs flex items-center gap-1 mt-1 truncate hover:text-primary"
+                                >
+                                    <Mail size={12} /> <span className="truncate">{member.email}</span>
+                                </a>
+                            )}
                             {member.currentPos && <p className="text-gray-500 text-xs mt-1 truncate">Current: {member.currentPos}</p>}
                         </div>
                     </div>
@@ -30,9 +35,12 @@ const Members = () => {
                             <h3 className="font-bold text-gray-800">{member.name}</h3>
                             <p className="text-gray-600 text-sm">{member.degree}</p>
                             {member.email && (
-                                <p className="text-gray-500 text-xs flex items-center gap-1 mt-1">
+                                <a 
+                                    href={`mailto:${member.email}`} 
+                                    className="text-gray-500 text-xs flex items-center gap-1 mt-1 hover:text-primary"
+                                >
                                     <Mail size={12} /> <span className="truncate">{member.email}</span>
-                                </p>
+                                </a>
                             )}
                             {member.currentPos && <p className="text-gray-500 text-xs mt-1">Current: {member.currentPos}</p>}
                         </div>

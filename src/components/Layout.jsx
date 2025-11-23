@@ -121,9 +121,14 @@ const Layout = ({ children }) => {
                             <span className="hidden sm:inline">|</span>
                             <span>Lab: {professorProfile.office[1]}</span>
                         </div>
-                        <p className="flex items-center gap-2">
-                            <Mail size={14}/> {professorProfile.email}
-                        </p>
+                        {professorProfile.email && (
+                            <a 
+                                href={`mailto:${professorProfile.email}`} 
+                                className="flex items-center gap-2 hover:text-white"
+                            >
+                                <Mail size={14}/> {professorProfile.email}
+                            </a>
+                        )}
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-400">
