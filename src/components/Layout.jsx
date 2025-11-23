@@ -32,7 +32,12 @@ const Layout = ({ children }) => {
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between h-16">
                         {/* Logo */}
-                        <NavLink to="/" className="flex items-center cursor-pointer">
+                        <NavLink to="/" className="flex items-center cursor-pointer gap-3">
+                            <img
+                                src="/img/Emblem.png"
+                                alt="UDMS Lab Emblem"
+                                className="w-10 h-10 object-contain"
+                            />
                             <div className="flex flex-col">
                                 <span className="font-bold text-2xl text-primary leading-none">{generalInfo.labShortName}</span>
                                 <span className="text-xs text-gray-500 hidden md:block">{generalInfo.labName}</span>
@@ -94,7 +99,18 @@ const Layout = ({ children }) => {
             {/* Footer */}
             <footer className="bg-dark text-gray-300 py-8 mt-12">
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-                    <div>
+                    <div className="flex flex-col items-start gap-3">
+                        <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
+                        <div className="flex items-center justify-start gap-3">
+                            <img
+                                src="/img/Signature.png"
+                                alt="Signature"
+                                className="w-auto opacity-100 pointer-events-none select-none"
+                                style={{ height: '3.5rem', filter: 'grayscale(1) invert(1) brightness(1.33)' }}
+                            />
+                        </div>
+                    </div>
+                    <div className="md:text-right">
                         <h4 className="text-white font-bold text-lg mb-4">{generalInfo.labName}</h4>
                         <p className="text-sm mb-2 font-semibold">{generalInfo.affiliation}</p>
                         <p className="text-sm text-gray-400 mb-1">{generalInfo.address}</p>
@@ -106,12 +122,9 @@ const Layout = ({ children }) => {
                         <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
                             <Phone size={14}/> {professorProfile.phone}
                         </p>
-                    </div>
-                    <div className="md:text-right">
-                        <p className="text-sm mb-2 flex items-center justify-end gap-2">
+                        <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
                             <Mail size={14}/> {professorProfile.email}
                         </p>
-                        <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
                     </div>
                 </div>
             </footer>
