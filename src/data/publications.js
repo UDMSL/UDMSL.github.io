@@ -71,8 +71,16 @@ const parsePublicationFile = (raw) => {
 };
 
 const parsedPublications = Object.entries(files)
-    .map(([path, raw]) => parsePublicationFile(raw))
-    .sort((a, b) => b.year - a.year);
+    .map(([path, raw], index) => ({
+        ...parsePublicationFile(raw),
+        sourceOrder: index,
+    }))
+    .sort((a, b) => {
+        if (a.year !== b.year) {
+            return b.year - a.year;
+        }
+        return a.sourceOrder - b.sourceOrder;
+    });
 
 export const publicationList = parsedPublications.flatMap(({ year, items }) =>
     items.map((entry, idx) => ({
