@@ -1,6 +1,9 @@
-export const piProfile = {
+import { generalInfo } from './general';
+
+export const professorProfile = {
     name: "Jeongho Kim (김정호)",
-    title: "Professor / Department of Chemistry",
+    title: "Professor",
+    affiliation: generalInfo.affiliation,
     email: "jkim5@inha.ac.kr",
     phone: "032-860-7678",
     office: ["5N507 (Office)", "5N516 (Lab)"],
@@ -16,7 +19,7 @@ export const piProfile = {
         { year: "1998.08", desc: "B.S. in Chemistry, KAIST" }
     ],
     career: [
-        { year: "2012.09 - Present", desc: "Professor, Department of Chemistry, Inha University" },
+        { year: "2012.09 - Present", desc: `Professor, ${generalInfo.department}, ${generalInfo.university}` },
         { year: "2009.07 - 2012.08", desc: "Senior Researcher, KAIST" },
         { year: "2008.07 - 2009.06", desc: "Research Associate, Univ. of Toronto" },
         { year: "2004.10 - 2008.06", desc: "Postdoctoral Fellow, Univ. of Toronto" }

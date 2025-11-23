@@ -1,25 +1,27 @@
-import { DATA } from '../data/db';
+import { generalInfo } from '../data/general';
+import { professorProfile } from '../data/professor';
+import { researchData } from '../data/research';
 
 const Home = () => {
     return (
         <div className="animate-fade-in">
             <div className="relative bg-primary text-white py-20 px-6 text-center">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">{DATA.labName}</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">{generalInfo.labName}</h1>
                 <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-                    Exploring the Ultrafast Dynamics of Energy Materials & Quantum Systems
+                    {generalInfo.affiliation}
                 </p>
             </div>
 
             {/* Recruitment Notice */}
             <div className="bg-blue-50 py-12 px-6">
                 <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-8 border-l-4 border-primary">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Recruiting / 모집안내</h2>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">{generalInfo.recruitingTitle}</h2>
                     <div className="space-y-8 text-gray-700 leading-relaxed">
                         <div>
                             <p>
                                 현재 석사 및 박사 과정 학생을 모집 중입니다. 저희 연구실에서 진행 중인 연구에 함께 참여하고 싶은 학생들은 저에게 이메일(
-                                    <a href={`mailto:${DATA.pi.email}`} className="text-secondary font-semibold hover:underline">{DATA.pi.email}</a>
-                                    ) 주시기 바랍니다 (사무실: 5북507, 실험실: 5북516, 전화: 032-860-7678).
+                                    <a href={`mailto:${professorProfile.email}`} className="text-secondary font-semibold hover:underline">{professorProfile.email}</a>
+                                    ) 주시기 바랍니다 (사무실: {professorProfile.office[0]}, 실험실: {professorProfile.office[1]}, 전화: {professorProfile.phone}).
                             </p>
                             <p className="mt-2">
                                     저희 연구실에서 수행 중인 연구들에 대하여 자세히 알고 싶으시면 
@@ -32,8 +34,8 @@ const Home = () => {
                         <div>
                             <p>
                                     We are looking for M.S. and Ph.D. students who are interested in working in our research group. Please feel free to contact me at 
-                                    <a href={`mailto:${DATA.pi.email}`} className="text-secondary font-semibold hover:underline mx-1">{DATA.pi.email}</a> 
-                                    (Office: 5N507, Lab: 5N516, Tel: +82-32-860-7678).
+                                    <a href={`mailto:${professorProfile.email}`} className="text-secondary font-semibold hover:underline mx-1">{professorProfile.email}</a> 
+                                    (Office: {professorProfile.office[0]}, Lab: {professorProfile.office[1]}, Tel: {professorProfile.phone}).
                                 </p>
                             <p className="mt-2">
                                     For details of the research projects in our group, please check my research profile at 
@@ -51,7 +53,7 @@ const Home = () => {
             <div className="max-w-7xl mx-auto py-12 px-6">
                 <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Research Highlights</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {DATA.researchHighlights.map((item, idx) => (
+                    {researchData.highlights.map((item, idx) => (
                         <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
                             <img src={item.img} alt={item.title} className="w-full h-48 object-cover" />
                             <div className="p-6">

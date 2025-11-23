@@ -1,4 +1,4 @@
-import { DATA } from '../data/db';
+import { membersData } from '../data/members';
 import { Mail } from 'lucide-react';
 
 const Members = () => {
@@ -6,7 +6,7 @@ const Members = () => {
         <div className="max-w-6xl mx-auto py-12 px-6">
             <h2 className="text-3xl font-bold text-primary mb-8">Current Members</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
-                {DATA.members.current.map((member, idx) => (
+                {membersData.current.map((member, idx) => (
                     <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-center gap-4 hover:bg-blue-50 transition-colors">
                         <img src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
                         <div className="min-w-0">
@@ -22,7 +22,7 @@ const Members = () => {
 
             <h2 className="text-3xl font-bold text-gray-600 mb-8">Alumni</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                 {DATA.members.alumni.map((member, idx) => (
+                 {membersData.alumni.map((member, idx) => (
                     <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-center gap-4 opacity-80">
                         <img src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm grayscale" />
                         <div>

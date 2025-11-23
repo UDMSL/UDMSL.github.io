@@ -1,4 +1,4 @@
-import { DATA } from '../data/db';
+import { researchData } from '../data/research';
 
 const Research = () => {
     return (
@@ -13,13 +13,13 @@ const Research = () => {
                     <div>
                         <h4 className="font-bold text-lg mb-4 text-gray-900 border-b-2 border-gray-200 inline-block pb-1">[Korean]</h4>
                         <div className="space-y-4">
-                            {DATA.researchIntro.ko.map((para, idx) => <p key={idx}>{para}</p>)}
+                            {researchData.intro.ko.map((para, idx) => <p key={idx}>{para}</p>)}
                         </div>
                     </div>
                     <div>
                         <h4 className="font-bold text-lg mb-4 text-gray-900 border-b-2 border-gray-200 inline-block pb-1">[English]</h4>
                         <div className="space-y-4">
-                            {DATA.researchIntro.en.map((para, idx) => <p key={idx}>{para}</p>)}
+                            {researchData.intro.en.map((para, idx) => <p key={idx}>{para}</p>)}
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@ const Research = () => {
             
             <div className="space-y-12">
                 <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">Key Methodologies</h3>
-                {DATA.researchHighlights.map((res, idx) => (
+                {researchData.highlights.map((res, idx) => (
                     <div key={idx} className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}>
                         <div className="w-full md:w-1/2">
                             <img src={res.img} alt={res.title} className="rounded-lg shadow-md w-full h-72 object-cover" />

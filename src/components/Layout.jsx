@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { DATA } from '../data/db';
+import { generalInfo } from '../data/general';
+import { professorProfile } from '../data/professor';
 import { Menu, X, Mail, Phone } from 'lucide-react';
 
+// 탭 구성과 라우팅 경로를 한 곳에서 관리하면 경로 변경 시 유지보수가 쉬움
 const tabs = [
     { id: 'Home', label: 'Home', path: '/' },
-    { id: 'Jeongho Kim', label: 'Jeongho Kim', path: '/pi' },
+    { id: 'Jeongho Kim', label: 'Jeongho Kim', path: '/professor' },
     { id: 'Group Members', label: 'Group Members', path: '/members' },
     { id: 'Research', label: 'Research', path: '/research' },
     { id: 'Publications', label: 'Publications', path: '/publications' },
@@ -13,6 +15,7 @@ const tabs = [
     { id: 'News', label: 'News', path: '/news' }
 ];
 
+// NavLink에서 재사용하는 스타일 함수
 const linkClass = ({ isActive }) =>
     `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
         isActive
@@ -31,8 +34,8 @@ const Layout = ({ children }) => {
                         {/* Logo */}
                         <NavLink to="/" className="flex items-center cursor-pointer">
                             <div className="flex flex-col">
-                                <span className="font-bold text-2xl text-primary leading-none">{DATA.labShortName}</span>
-                                <span className="text-xs text-gray-500 hidden md:block">{DATA.labName}</span>
+                                <span className="font-bold text-2xl text-primary leading-none">{generalInfo.labShortName}</span>
+                                <span className="text-xs text-gray-500 hidden md:block">{generalInfo.labName}</span>
                             </div>
                         </NavLink>
 
@@ -57,7 +60,7 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
 
-                {/* Mobile Dropdown */}
+                {/* Mobile Dropdown: 클릭 시 자동 닫히도록 onClick 처리 */}
                 {mobileMenuOpen && (
                     <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
                         <div className="px-2 pt-2 pb-3 space-y-1">
@@ -92,21 +95,21 @@ const Layout = ({ children }) => {
             <footer className="bg-dark text-gray-300 py-8 mt-12">
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
                     <div>
-                        <h4 className="text-white font-bold text-lg mb-4">{DATA.labName}</h4>
-                        <p className="text-sm mb-2 font-semibold">Department of Chemistry, Inha University</p>
-                        <p className="text-sm text-gray-400 mb-1">22212 인천광역시 미추홀구 인하로 100 인하대학교</p>
+                        <h4 className="text-white font-bold text-lg mb-4">{generalInfo.labName}</h4>
+                        <p className="text-sm mb-2 font-semibold">{generalInfo.affiliation}</p>
+                        <p className="text-sm text-gray-400 mb-1">{generalInfo.address}</p>
                         <div className="flex flex-col sm:flex-row sm:gap-4 text-sm text-gray-400">
-                            <span>Office: {DATA.pi.office[0]}</span>
+                            <span>Office: {professorProfile.office[0]}</span>
                             <span className="hidden sm:inline">|</span>
-                            <span>Lab: {DATA.pi.office[1]}</span>
+                            <span>Lab: {professorProfile.office[1]}</span>
                         </div>
                         <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
-                            <Phone size={14}/> {DATA.pi.phone}
+                            <Phone size={14}/> {professorProfile.phone}
                         </p>
                     </div>
                     <div className="md:text-right">
                         <p className="text-sm mb-2 flex items-center justify-end gap-2">
-                            <Mail size={14}/> {DATA.pi.email}
+                            <Mail size={14}/> {professorProfile.email}
                         </p>
                         <p className="text-sm text-gray-500">© 2024 UDMS Lab. All Rights Reserved.</p>
                     </div>

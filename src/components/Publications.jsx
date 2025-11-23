@@ -1,4 +1,4 @@
-import { DATA } from '../data/db';
+import { publicationList } from '../data/publications';
 import { ExternalLink } from 'lucide-react';
 
 const Publications = () => {
@@ -6,8 +6,8 @@ const Publications = () => {
         <div className="max-w-5xl mx-auto py-12 px-6">
             <h2 className="text-3xl font-bold text-gray-800 mb-8">Selected Publications</h2>
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                {DATA.publications.map((pub, idx) => (
-                    <div key={idx} className={`p-6 ${idx !== DATA.publications.length - 1 ? 'border-b border-gray-100' : ''} hover:bg-blue-50 transition-colors group`}>
+                {publicationList.map((pub, idx) => (
+                    <div key={idx} className={`p-6 ${idx !== publicationList.length - 1 ? 'border-b border-gray-100' : ''} hover:bg-blue-50 transition-colors group`}>
                         <div className="flex gap-4 items-start">
                             <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0">{pub.year}</span>
                             <div className="flex-grow">
