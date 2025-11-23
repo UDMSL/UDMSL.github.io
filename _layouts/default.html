@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="icon" href="/assets/img/favicon/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  {% seo %}
+</head>
+<body>
+  {% assign general = site.data.general %}
+  {% assign professor = site.data.professor %}
+  {% assign research = site.data.research %}
+  {% assign members = site.data.members %}
+  {% assign news = site.data.news | sort: 'date' | reverse %}
+  {% assign publications = site.data.publications %}
+  {% assign gallery = site.data.gallery %}
+
+  <header class="hero" id="top">
+    <div class="container hero__content">
+      <div>
+        <p class="eyebrow">{{ general.department }} · {{ general.university }}</p>
+        <h1>{{ general.labName }}</h1>
+        <p class="lead">Ultrafast spectroscopy & structural dynamics research group</p>
+        <div class="hero__buttons">
+          <a class="btn" href="#research">Research</a>
+          <a class="btn btn--ghost" href="#news">News</a>
+        </div>
+      </div>
+      <div class="hero__contact">
+        <p class="label">Contact</p>
+        <p>{{ general.address }}</p>
+        <p><strong>{{ professor.name }}</strong> · {{ professor.email }}</p>
+        <p>{{ professor.office | join: ' · ' }}</p>
+        <p class="recruit">{{ general.recruitingTitle }}</p>
+      </div>
+    </div>
+  </header>
+
+  {% include nav.html %}
+
+  <main class="container">
+    <section id="professor" class="card">
+      <div class="section__heading">
+        <h2>Professor</h2>
+        <p>{{ professor.affiliation }}</p>
+      </div>
+      <div class="professor">
+        <img src="{{ professor.img }}" alt="{{ professor.name }}" class="professor__img">
+        <div class="professor__body">
+          <h3>{{ professor.name }}</h3>
+          <p class="muted">{{ professor.title }} · {{ professor.email }} · {{ professor.phone }}</p>
+          <div class="stack">
+            {% for paragraph in professor.bio %}
+              <p>{{ paragraph }}</p>
+            {% endfor %}
+          </div>
+          <div class="grid grid-2">
+            <div>
+              <h4>Education</h4>
+              <ul>
+                {% for item in professor.education %}
+                  <li><strong>{{ item.year }}</strong> — {{ item.desc }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div>
+              <h4>Career</h4>
+              <ul>
+                {% for item in professor.career %}
+                  <li><strong>{{ item.year }}</strong> — {{ item.desc }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="card">
+      <div class="section__heading">
+        <h2>Research</h2>
+        <p>Ultrafast spectroscopy, X-ray scattering, and excited-state dynamics</p>
+      </div>
+      <div class="stack">
+        <h3>소개</h3>
+        {% for paragraph in research.intro.ko %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+        <h3>Overview (EN)</h3>
+        {% for paragraph in research.intro.en %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+      </div>
+      <div class="grid grid-2 research__highlights">
+        {% for item in research.highlights %}
+          <article class="highlight">
+            <img src="{{ item.img }}" alt="{{ item.title }} illustration">
+            <div class="highlight__body">
+              <h4>{{ item.title }}</h4>
+              <p class="muted">{{ item.desc }}</p>
+              <p>{{ item.detail }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="publications" class="card">
+      <div class="section__heading">
+        <h2>Publications</h2>
+        <p>Selected journal articles</p>
+      </div>
+      <div class="stack publications">
+        {% assign grouped = publications | group_by: 'year' %}
+        {% assign sorted = grouped | sort: 'name' | reverse %}
+        {% for group in sorted %}
+          <h4>{{ group.name }}</h4>
+          <ul>
+            {% for pub in group.items %}
+              <li>{{ pub.text }}{% if pub.doi %} <span class="doi">doi: {{ pub.doi }}</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="members" class="card">
+      <div class="section__heading">
+        <h2>Members</h2>
+        <p>Current team and alumni</p>
+      </div>
+      <h3>Current</h3>
+      <div class="grid grid-3">
+        {% for member in members.current %}
+          <article class="member">
+            <img src="{{ member.img }}" alt="{{ member.name }}" class="member__img">
+            <h4>{{ member.name }}</h4>
+            <p class="muted">{{ member.role }}</p>
+            <p class="muted">{{ member.email }}</p>
+          </article>
+        {% endfor %}
+      </div>
+      <h3>Alumni</h3>
+      <div class="grid grid-3">
+        {% for member in members.alumni %}
+          <article class="member">
+            <img src="{{ member.img }}" alt="{{ member.name }}" class="member__img">
+            <h4>{{ member.name }}</h4>
+            <p class="muted">{{ member.degree }}</p>
+            {% if member.currentPos %}<p class="muted">{{ member.currentPos }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="news" class="card">
+      <div class="section__heading">
+        <h2>News</h2>
+        <p>Latest updates</p>
+      </div>
+      <ul class="news">
+        {% for post in news %}
+          <li>
+            <p class="muted">{{ post.date | date: '%Y-%m-%d' }}</p>
+            <p class="news__title">{{ post.title }}</p>
+            <p>{{ post.content }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section id="gallery" class="card">
+      <div class="section__heading">
+        <h2>Gallery</h2>
+        <p>Lab moments</p>
+      </div>
+      <div class="grid grid-4 gallery">
+        {% for item in gallery %}
+          <figure>
+            <img src="{{ item.img }}" alt="{{ item.title }}">
+            <figcaption>{{ item.title }}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__content">
+      <div>
+        <p class="muted">{{ general.labShortName }} · {{ general.university }}</p>
+        <p>{{ general.address }}</p>
+      </div>
+      <div class="footer__links">
+        <a href="#top">Back to top</a>
+        <a href="#news">News</a>
+        <a href="#members">Members</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

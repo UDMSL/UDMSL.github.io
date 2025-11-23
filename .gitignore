@@ -1,3 +1,13 @@
+# Build outputs
+node_modules
+_dist
+_dist-ssr
+dist
+dist-ssr
+.sass-cache
+.jekyll-cache
+_site
+
 # Logs
 logs
 *.log
@@ -6,11 +16,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
