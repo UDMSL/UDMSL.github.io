@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import {
+    HashRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './components/Home';
 import PIProfile from './components/PIProfile';
@@ -9,25 +14,21 @@ import Gallery from './components/Gallery';
 import News from './components/News';
 
 function App() {
-    const [activeTab, setActiveTab] = useState('Home');
-
-    const renderContent = () => {
-        switch(activeTab) {
-            case 'Home': return <Home />;
-            case 'Jeongho Kim': return <PIProfile />;
-            case 'Group Members': return <Members />;
-            case 'Research': return <Research />;
-            case 'Publications': return <Publications />;
-            case 'Gallery': return <Gallery />;
-            case 'News': return <News />;
-            default: return <Home />;
-        }
-    };
-
     return (
-        <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
-            {renderContent()}
-        </Layout>
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/pi" element={<PIProfile />} />
+                    <Route path="/members" element={<Members />} />
+                    <Route path="/research" element={<Research />} />
+                    <Route path="/publications" element={<Publications />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+            </Layout>
+        </Router>
     );
 }
 
