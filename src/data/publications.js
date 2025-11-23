@@ -65,7 +65,8 @@ export const publicationList = Object.entries(files)
             year,
             text: entry.text,
             doi: entry.doi,
+            order: idx,
             slug: `${year}-${String(idx + 1).padStart(2, '0')}`,
         }));
     })
-    .sort((a, b) => b.year - a.year || a.slug.localeCompare(b.slug));
+    .sort((a, b) => b.year - a.year || a.order - b.order);
