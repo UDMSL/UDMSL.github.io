@@ -111,7 +111,7 @@ const Layout = ({ children }) => {
                         <p className="text-sm mb-2 flex items-center justify-end gap-2">
                             <Mail size={14}/> {professorProfile.email}
                         </p>
-                        <p className="text-sm text-gray-500">© 2024 UDMS Lab. All Rights Reserved.</p>
+                        <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
                     </div>
                 </div>
             </footer>
