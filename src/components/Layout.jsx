@@ -98,10 +98,14 @@ const Layout = ({ children }) => {
 
             {/* Footer */}
             <footer className="bg-dark text-gray-300 py-8 mt-12">
-                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-                    <div className="flex flex-col items-start gap-3">
-                        <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
-                        <div className="flex items-center justify-start gap-3">
+                <div className="max-w-7xl mx-auto px-6 space-y-1">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div className="space-y-1">
+                            <h4 className="text-white font-bold text-lg">{generalInfo.labName}</h4>
+                            <p className="text-sm font-semibold">{generalInfo.affiliation}</p>
+                            <p className="text-sm text-gray-400">{generalInfo.address}</p>
+                        </div>
+                        <div className="flex items-center gap-3 md:self-start">
                             <img
                                 src="/img/Signature.png"
                                 alt="Signature"
@@ -110,21 +114,23 @@ const Layout = ({ children }) => {
                             />
                         </div>
                     </div>
-                    <div className="md:text-right">
-                        <h4 className="text-white font-bold text-lg mb-4">{generalInfo.labName}</h4>
-                        <p className="text-sm mb-2 font-semibold">{generalInfo.affiliation}</p>
-                        <p className="text-sm text-gray-400 mb-1">{generalInfo.address}</p>
-                        <div className="flex flex-col sm:flex-row sm:gap-4 text-sm text-gray-400">
+
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-400">
+                        <div className="flex flex-wrap items-center gap-3">
                             <span>Office: {professorProfile.office[0]}</span>
                             <span className="hidden sm:inline">|</span>
                             <span>Lab: {professorProfile.office[1]}</span>
                         </div>
-                        <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
-                            <Phone size={14}/> {professorProfile.phone}
-                        </p>
-                        <p className="text-sm text-gray-400 mt-1 flex items-center gap-2">
+                        <p className="flex items-center gap-2">
                             <Mail size={14}/> {professorProfile.email}
                         </p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-400">
+                        <p className="flex items-center gap-2">
+                            <Phone size={14}/> {professorProfile.phone}
+                        </p>
+                        <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
                     </div>
                 </div>
             </footer>

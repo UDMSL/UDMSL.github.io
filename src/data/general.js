@@ -1,10 +1,15 @@
-// 반드시 export const 로 시작해야 합니다.
+import { parseFrontmatter } from '../utils/markdown.js';
+
+const files = import.meta.glob('../content/general.md', { eager: true, query: '?raw', import: 'default' });
+const raw = Object.values(files)[0] ?? '';
+const { data } = parseFrontmatter(raw);
+
 export const generalInfo = {
-    labName: "Ultrafast Dynamics & Materials Spectroscopy Laboratory",
-    labShortName: "UDMS Lab.",
-    department: "Department of Chemistry",
-    university: "Inha University",
-    affiliation: "Department of Chemistry, Inha University",
-    address: "22212 인천광역시 미추홀구 인하로 100 인하대학교",
-    recruitingTitle: "Recruiting / 모집안내",
+    labName: data.labName ?? '',
+    labShortName: data.labShortName ?? '',
+    department: data.department ?? '',
+    university: data.university ?? '',
+    affiliation: data.affiliation ?? '',
+    address: data.address ?? '',
+    recruitingTitle: data.recruitingTitle ?? '',
 };

@@ -1,4 +1,18 @@
-export const newsPosts = [
-    { date: "2025-11-22", title: "교수님과의 식사", content: "교수님과 함께하는 점심식사가 있었습니다." },
-    { date: "2025-11-21", title: "새로운 홈페이지 개장", content: "우리 연구실의 새로운 홈페이지가 개장했습니다. 감사합니다!" },
-];
+import { parseFrontmatter, toTimestamp } from '../utils/markdown.js';
+
+const newsFiles = import.meta.glob('../content/news/*.md', { eager: true, query: '?raw', import: 'default' });
+
+export const newsPosts = Object.entries(newsFiles)
+    .map(([path, raw]) => {
+        const { data, content } = parseFrontmatter(raw);
+        const slug = path.split('/').pop()?.replace('.md', '') ?? path;
+
+        return {
+            ...data,
+            date: data.date ?? '',
+            title: data.title ?? slug,
+            content,
+            slug,
+        };
+    })
+    .sort((a, b) => toTimestamp(b.date) - toTimestamp(a.date));

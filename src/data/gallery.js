@@ -1,6 +1,21 @@
-export const galleryImages = [
-    { title: "구성원들의 점심식사", img: "https://placehold.co/400x300?text=Lunch" },
-    { title: "대한화학회 제 136회 학술발표회 참석", img: "/img/KCS_Wonwoo.jpg" },
-    { title: "Lab Workshop", img: "https://placehold.co/400x300?text=Workshop" },
-    { title: "Laser Alignment", img: "https://placehold.co/400x300?text=Experiment" },
-];
+import { parseFrontmatter, resolveImagePath, toTimestamp } from '../utils/markdown.js';
+
+const files = import.meta.glob('../content/gallery/*.md', { eager: true, query: '?raw', import: 'default' });
+
+export const galleryImages = Object.entries(files)
+    .map(([path, raw]) => {
+        const { data } = parseFrontmatter(raw);
+        const slug = path.split('/').pop()?.replace('.md', '') ?? path;
+        const date = data.date ?? '';
+        return {
+            title: data.title ?? slug,
+            date,
+            img: resolveImagePath(data.img),
+            slug,
+        };
+    })
+    .sort((a, b) => {
+        const diff = toTimestamp(b.date) - toTimestamp(a.date);
+        if (diff !== 0) return diff;
+        return a.title.localeCompare(b.title);
+    });

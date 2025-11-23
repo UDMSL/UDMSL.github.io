@@ -1,0 +1,25 @@
+---
+# 작성 예시:
+# name: "이름"
+# title: "Professor"
+# affiliation: "소속"
+# email: "메일"
+# phone: "전화번호"
+# office: ["사무실", "랩"]
+# img: "/img/photo.jpg"
+# cvLink: "/Professor_CV.pdf"
+# bio: ["줄1", "줄2"]
+# education: [{ "year": "2024", "desc": "Ph.D." }]
+# career: [{ "year": "2025 - Present", "desc": "Professor" }]
+name: "Jeongho Kim (김정호)"
+title: Professor
+affiliation: Department of Chemistry, Inha University
+email: jkim5@inha.ac.kr
+phone: "032-860-7678"
+office: ["5N507 (Office)", "5N516 (Lab)"]
+img: /img/Prof_JHK.jpg
+cvLink: "#"
+bio: ["I am a physical chemist who is interested in fast dynamics of chemical and biological reactions and photophysical processes in condensed phase.", "For real-time probing of such fast phenomena, I make use of time-resolved (pump-probe) techniques such as transient absorption spectroscopy, two-dimensional electronic spectroscopy, and time-resolved X-ray diffraction."]
+education: [{ "year": "2004.08", "desc": "Ph.D. in Chemistry, Univ. of Chicago" }, { "year": "1999.08", "desc": "M.S. in Chemistry, Univ. of Chicago" }, { "year": "1998.08", "desc": "B.S. in Chemistry, KAIST" }]
+career: [{ "year": "2012.09 - Present", "desc": "Professor, Department of Chemistry, Inha University" }, { "year": "2009.07 - 2012.08", "desc": "Senior Researcher, KAIST" }, { "year": "2008.07 - 2009.06", "desc": "Research Associate, Univ. of Toronto" }, { "year": "2004.10 - 2008.06", "desc": "Postdoctoral Fellow, Univ. of Toronto" }]
+---

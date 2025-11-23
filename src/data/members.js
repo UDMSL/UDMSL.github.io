@@ -1,12 +1,32 @@
+import { parseFrontmatter, resolveImagePath } from '../utils/markdown.js';
+
+const mapFiles = (files, mapper) =>
+    Object.entries(files)
+        .map(([path, raw]) => {
+            const { data } = parseFrontmatter(raw);
+            const slug = path.split('/').pop()?.replace('.md', '') ?? path;
+            return mapper(data, slug);
+        })
+        .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+
+const currentFiles = import.meta.glob('../content/members/current/*.md', { eager: true, query: '?raw', import: 'default' });
+const alumniFiles = import.meta.glob('../content/members/alumni/*.md', { eager: true, query: '?raw', import: 'default' });
+
 export const membersData = {
-    current: [
-        { name: "Wonwoo Shin", role: "M.S. Student", email: "twinboy@inha.edu", img: "https://placehold.co/150x150?text=WS" },
-        { name: "Jaehoon Jeong", role: "M.S. Student", email: "julyvine720@inha.edu", img: "https://placehold.co/150x150?text=JJ" },
-        { name: "Jooeun Park", role: "Undergraduate", email: "pjk228@inha.edu", img: "https://placehold.co/150x150?text=JP" },
-    ],
-    alumni: [
-        { name: "Seungjoo Choi", degree: "Ph.D.", currentPos: "", img: "https://placehold.co/150x150?text=SC" },
-        { name: "Youngsoo Lim", degree: "M.S.", currentPos: "", img: "https://placehold.co/150x150?text=YL" },
-        { name: "Yoojin Hwang", degree: "M.S.", currentPos: "", img: "https://placehold.co/150x150?text=YH" }
-    ]
+    current: mapFiles(currentFiles, (data, slug) => ({
+        name: data.name ?? slug,
+        order: Number.isFinite(Number(data.order)) ? Number(data.order) : Number.POSITIVE_INFINITY,
+        degree: data.degree ?? data.role ?? '',
+        email: data.email ?? '',
+        currentPos: data.currentPos ?? '',
+        img: resolveImagePath(data.img),
+    })),
+    alumni: mapFiles(alumniFiles, (data, slug) => ({
+        name: data.name ?? slug,
+        order: Number.isFinite(Number(data.order)) ? Number(data.order) : Number.POSITIVE_INFINITY,
+        degree: data.degree ?? data.role ?? '',
+        email: data.email ?? '',
+        currentPos: data.currentPos ?? '',
+        img: resolveImagePath(data.img),
+    })),
 };

@@ -1,27 +1,20 @@
+import { parseFrontmatter, resolveImagePath } from '../utils/markdown.js';
 import { generalInfo } from './general';
 
+const files = import.meta.glob('../content/professor.md', { eager: true, query: '?raw', import: 'default' });
+const raw = Object.values(files)[0] ?? '';
+const { data } = parseFrontmatter(raw);
+
 export const professorProfile = {
-    name: "Jeongho Kim (김정호)",
-    title: "Professor",
-    affiliation: generalInfo.affiliation,
-    email: "jkim5@inha.ac.kr",
-    phone: "032-860-7678",
-    office: ["5N507 (Office)", "5N516 (Lab)"],
-    img: "/img/Prof_JHK.jpg", 
-    cvLink: "#",
-    bio: [
-        "I am a physical chemist who is interested in fast dynamics of chemical and biological reactions and photophysical processes in condensed phase.",
-        "For real-time probing of such fast phenomena, I make use of time-resolved (pump-probe) techniques such as transient absorption spectroscopy, two-dimensional electronic spectroscopy, and time-resolved X-ray diffraction."
-    ],
-    education: [
-        { year: "2004.08", desc: "Ph.D. in Chemistry, Univ. of Chicago" },
-        { year: "1999.08", desc: "M.S. in Chemistry, Univ. of Chicago" },
-        { year: "1998.08", desc: "B.S. in Chemistry, KAIST" }
-    ],
-    career: [
-        { year: "2012.09 - Present", desc: `Professor, ${generalInfo.department}, ${generalInfo.university}` },
-        { year: "2009.07 - 2012.08", desc: "Senior Researcher, KAIST" },
-        { year: "2008.07 - 2009.06", desc: "Research Associate, Univ. of Toronto" },
-        { year: "2004.10 - 2008.06", desc: "Postdoctoral Fellow, Univ. of Toronto" }
-    ]
+    name: data.name ?? '',
+    title: data.title ?? '',
+    affiliation: data.affiliation ?? generalInfo.affiliation,
+    email: data.email ?? '',
+    phone: data.phone ?? '',
+    office: Array.isArray(data.office) ? data.office : [],
+    img: resolveImagePath(data.img),
+    cvLink: data.cvLink ?? '#',
+    bio: Array.isArray(data.bio) ? data.bio : [],
+    education: Array.isArray(data.education) ? data.education : [],
+    career: Array.isArray(data.career) ? data.career : [],
 };
