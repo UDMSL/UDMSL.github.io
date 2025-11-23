@@ -1,0 +1,28 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 코드가 올라오면 실행해라!
+
+permissions:
+  contents: write # 깃허브 로봇에게 '쓰기 권한'을 줌
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # 리눅스 컴퓨터 한 대를 빌려서 실행
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+          # 깃허브 컴퓨터가 알아서 설치하고 빌드함
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # 배포할 브랜치 이름
+          folder: dist     # 업로드할 폴더 이름 (Vite 결과물)
