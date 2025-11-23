@@ -8,6 +8,7 @@ const parsePublicationFile = (raw) => {
     let year = 0;
     const items = [];
     let current = null;
+    let lastKey = null;
 
     const pushCurrent = () => {
         if (current) {
@@ -17,6 +18,7 @@ const parsePublicationFile = (raw) => {
             });
         }
         current = null;
+        lastKey = null;
     };
 
     const unquote = (str = '') => str.replace(/^"/, '').replace(/"$/, '').replace(/\\"/g, '"');
@@ -39,17 +41,27 @@ const parsePublicationFile = (raw) => {
             pushCurrent();
             current = { text: '', doi: '' };
             const textMatch = trimmed.match(/text:\s*(.+)/);
-            if (textMatch) current.text = unquote(textMatch[1].trim());
+            if (textMatch) {
+                current.text = unquote(textMatch[1].trim());
+                lastKey = 'text';
+            }
             const doiMatch = trimmed.match(/doi:\s*(.+)/);
-            if (doiMatch) current.doi = unquote(doiMatch[1].trim());
+            if (doiMatch) {
+                current.doi = unquote(doiMatch[1].trim());
+                lastKey = 'doi';
+            }
             continue;
         }
 
         if (current) {
             if (trimmed.startsWith('text:')) {
                 current.text = unquote(trimmed.replace('text:', '').trim());
+                lastKey = 'text';
             } else if (trimmed.startsWith('doi:')) {
                 current.doi = unquote(trimmed.replace('doi:', '').trim());
+                lastKey = 'doi';
+            } else if (lastKey === 'text' && trimmed) {
+                current.text = `${current.text} ${unquote(trimmed)}`.trim();
             }
         }
     }
