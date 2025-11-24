@@ -3,9 +3,11 @@ import { ExternalLink } from 'lucide-react'
 
 const Publications = () => {
   return (
-    <div className="max-w-5xl mx-auto py-12 px-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8">Selected Publications</h2>
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+    <div className="max-w-6xl mx-auto py-12 px-6">
+      <div className="space-y-3 mb-6">
+        <h2 className="text-3xl font-bold text-gray-900">Publications</h2>
+      </div>
+      <div className="glass-panel rounded-2xl shadow-xl border border-gray/70 overflow-hidden">
         {publicationList.map((pub, idx) => {
           const hasDoi = Boolean(pub.doi)
           const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.text)}`
@@ -14,10 +16,12 @@ const Publications = () => {
           return (
             <div
               key={pub.slug}
-              className={`p-6 ${idx !== publicationList.length - 1 ? 'border-b border-gray-100' : ''} hover:bg-blue-50 transition-colors`}
+              className={`relative p-6 ${idx !== publicationList.length - 1 ? 'border-b border-gray/60' : ''} bg-white/70`}
             >
               <div className="flex gap-4 items-start">
-                <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0">{pub.year}</span>
+                <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0 shadow-sm">
+                  {pub.year}
+                </span>
                 <div className="flex-grow">
                   <p className="text-gray-800 leading-relaxed font-medium">{pub.text}</p>
                   <div className="mt-3 flex flex-wrap gap-2">

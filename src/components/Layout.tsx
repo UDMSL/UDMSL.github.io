@@ -23,8 +23,10 @@ const tabs: TabItem[] = [
 
 // NavLink에서 재사용하는 스타일 함수
 const linkClass = ({ isActive }: { isActive: boolean }): string =>
-  `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-    isActive ? 'text-primary bg-blue-50' : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+  `px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+    isActive
+      ? 'text-primary bg-blue-50 shadow-sm'
+      : 'text-gray-600 hover:text-primary hover:bg-gray-50 hover:-translate-y-[1px] hover:shadow'
   }`
 
 interface LayoutProps {

@@ -2,11 +2,15 @@ import { galleryImages } from '../data/gallery'
 
 const Gallery = () => {
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 border-b pb-4">Gallery</h2>
+    <div className="max-w-7xl mx-auto py-12 px-6">
+      <div className="flex items-center justify-between mb-6">
+        <div className="space-y-2">
+          <h2 className="text-3xl font-bold text-gray-900">Gallery</h2>
+        </div>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {galleryImages.map((item) => (
-          <div key={item.slug} className="group relative overflow-hidden rounded-lg shadow-md aspect-[4/3]">
+          <div key={item.slug} className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel">
             <img
               src={item.img}
               alt={item.title}

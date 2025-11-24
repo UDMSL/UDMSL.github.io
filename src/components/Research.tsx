@@ -2,25 +2,31 @@ import { researchData } from '../data/research'
 
 const Research = () => {
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Research Areas</h2>
+    <div className="max-w-7xl mx-auto py-12 px-6 space-y-8">
+      <div className="text-center space-y-3">
       </div>
-
-      <div className="mb-16 bg-gray-50 p-8 rounded-xl border border-gray-100">
-        <h3 className="text-2xl font-bold text-primary mb-6 text-center">Research Overview</h3>
-        <div className="grid lg:grid-cols-2 gap-12 text-gray-700 leading-relaxed text-justify">
-          <div>
-            <h4 className="font-bold text-lg mb-4 text-gray-900 border-b-2 border-gray-200 inline-block pb-1">[Korean]</h4>
-            <div className="space-y-4">
+      <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+        <div className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform">
+          <div className="p-6 md:p-7 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-900">연구 개요</h3>
+              <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-primary font-semibold">KOR</span>
+            </div>
+            <div className="space-y-4 text-gray-700 leading-relaxed text-justify">
               {researchData.intro.ko.map((para) => (
                 <p key={para}>{para}</p>
               ))}
             </div>
           </div>
-          <div>
-            <h4 className="font-bold text-lg mb-4 text-gray-900 border-b-2 border-gray-200 inline-block pb-1">[English]</h4>
-            <div className="space-y-4">
+        </div>
+
+        <div className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform">
+          <div className="p-6 md:p-7 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-900">Research Overview</h3>
+              <span className="text-xs px-3 py-1 rounded-full bg-indigo-100 text-primary font-semibold">ENG</span>
+            </div>
+            <div className="space-y-4 text-gray-700 leading-relaxed text-justify">
               {researchData.intro.en.map((para) => (
                 <p key={para}>{para}</p>
               ))}
@@ -29,25 +35,36 @@ const Research = () => {
         </div>
       </div>
 
-      <div className="space-y-12">
-        <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">Key Methodologies</h3>
-        {researchData.highlights.map((res, idx) => (
-          <div
-            key={res.slug}
-            className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}
-          >
-            <div className="w-full md:w-1/2">
-              <img src={res.img} alt={res.title} className="rounded-lg shadow-md w-full h-72 object-cover" />
+      <div className="space-y-10">
+        <h3 className="text-2xl font-bold text-center text-gray-900">Key Methodologies</h3>
+        {researchData.highlights.map((res, idx) => {
+          const imageRounded =
+            idx % 2 === 0 ? 'md:rounded-l-2xl md:rounded-r-none' : 'md:rounded-r-2xl md:rounded-l-none'
+
+          return (
+            <div
+              key={res.slug}
+              className={`glass-panel group rounded-2xl overflow-hidden shadow-xl border border-gray/70 flex flex-col transition-transform ${
+                idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              }`}
+            >
+              <div className={`w-full md:w-1/2 min-h-[280px] md:min-h-[340px] overflow-hidden ${imageRounded}`}>
+                <img
+                  src={res.img}
+                  alt={res.title}
+                  className="w-full h-full object-cover scale-110 rounded-2xl transition-transform duration-700"
+                />
+              </div>
+              <div className="w-full md:w-1/2 p-8 space-y-4">
+                <h3 className="text-2xl font-bold text-primary">{res.title}</h3>
+                <p className="text-gray-800 leading-relaxed text-lg font-semibold">{res.desc}</p>
+                <p className="text-gray-600 text-sm leading-relaxed bg-blue-50/80 p-4 rounded-xl border border-blue-100">
+                  {res.detail}
+                </p>
+              </div>
             </div>
-            <div className="w-full md:w-1/2">
-              <h3 className="text-2xl font-bold text-primary mb-4">{res.title}</h3>
-              <p className="text-gray-700 leading-relaxed text-lg font-medium mb-4">{res.desc}</p>
-              <p className="text-gray-600 text-sm leading-relaxed bg-blue-50 p-4 rounded-lg border-l-4 border-secondary">
-                {res.detail}
-              </p>
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

@@ -3,13 +3,15 @@ import { Mail } from 'lucide-react'
 
 const Members = () => {
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
-      <h2 className="text-3xl font-bold text-primary mb-8">Current Members</h2>
+    <div className="max-w-7xl mx-auto py-12 px-6">
+      <div className="space-y-3 mb-8">
+        <h2 className="text-3xl font-bold text-primary">Current Members</h2>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
         {membersData.current.map((member) => (
           <div
             key={member.name}
-            className="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-center gap-4 hover:bg-blue-50 transition-colors"
+            className="glass-panel rounded-xl p-4 border border-gray-200/80 flex items-center gap-4 hover:-translate-y-1 transition transform shadow-md"
           >
             <img
               src={member.img}
@@ -33,12 +35,14 @@ const Members = () => {
         ))}
       </div>
 
-      <h2 className="text-3xl font-bold text-gray-600 mb-8">Alumni</h2>
+      <div className="space-y-2 mb-8">
+        <h2 className="text-3xl font-bold text-gray-800">Alumni</h2>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {membersData.alumni.map((member) => (
           <div
             key={`${member.name}-${member.currentPos}`}
-            className="bg-gray-50 rounded-lg p-4 border border-gray-200 flex items-center gap-4 opacity-80"
+            className="glass-panel rounded-xl p-4 border border-gray-200/70 flex items-center gap-4 opacity-95 shadow-sm"
           >
             <img
               src={member.img}

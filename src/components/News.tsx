@@ -4,11 +4,16 @@ const News = () => {
   const placeholderImg = 'https://placehold.co/96x96?text=News'
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 border-b pb-4">Lab News</h2>
+    <div className="max-w-5xl mx-auto py-12 px-6 space-y-6">
+      <div className="space-y-2">
+        <h2 className="text-3xl font-bold text-gray-900">Lab News</h2>
+      </div>
       <div className="space-y-6">
         {newsPosts.map((item) => (
-          <div key={item.slug} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div
+            key={item.slug}
+            className="glass-panel p-6 rounded-2xl shadow-lg border border-white/70 transition-transform duration-200 hover:scale-[1.01] hover:shadow-xl"
+          >
             <div className="flex items-center gap-4">
               <div className="flex-1">
                 <div className="text-sm text-primary font-bold mb-2">{item.date}</div>
@@ -18,7 +23,7 @@ const News = () => {
               <img
                 src={item.image || placeholderImg}
                 alt={`${item.title} thumbnail`}
-                className="w-20 h-20 rounded-full object-cover border border-gray-200 shadow-sm flex-shrink-0"
+                className="w-20 h-20 rounded-full object-cover border border-gray-100 shadow-sm flex-shrink-0"
               />
             </div>
           </div>

@@ -11,7 +11,7 @@
 # bio: ["줄1", "줄2"]
 # education: [{ "year": "2024", "desc": "Ph.D." }]
 # career: [{ "year": "2025 - Present", "desc": "Professor" }]
-name: "Jeongho Kim (김정호)"
+name: "김정호 (Jeongho Kim)"
 title: Professor
 affiliation: Department of Chemistry, Inha University
 email: jkim5@inha.ac.kr
