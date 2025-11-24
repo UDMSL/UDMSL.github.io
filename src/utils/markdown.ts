@@ -30,8 +30,9 @@ export const resolveImagePath = (value: unknown): string => {
   const img = (typeof value === 'string' ? value : '').trim()
   if (!img) return ''
   if (/^https?:\/\//i.test(img)) return img
-  if (img.startsWith('/')) return img
-  return '/' + img.replace(/^\/+/, '')
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+  const normalized = img.replace(/^\/+/, '')
+  return `${base}/${normalized}`
 }
 
 const parseValue = (value = ''): unknown => {
