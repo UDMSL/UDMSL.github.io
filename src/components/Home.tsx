@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { generalInfo } from '../data/general'
 import { professorProfile } from '../data/professor'
 import { researchData } from '../data/research'

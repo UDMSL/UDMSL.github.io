@@ -6,7 +6,7 @@ const placeholderImg = 'https://placehold.co/400x500/1e3a8a/FFF?text=Prof.+Jeong
 const Professor = () => {
   return (
     <div className="max-w-6xl mx-auto py-12 px-6 space-y-8">
-      <div className="relative overflow-hidden rounded-2xl border border-gray/70bg-white text-gray-900 shadow-xl p-6 md:p-7">
+      <div className="relative overflow-hidden rounded-2xl border border-gray/70 bg-white text-gray-900 shadow-xl p-6 md:p-7">
         <div className="absolute inset-0 pointer-events-none opacity-50">
           <div className="absolute -left-10 -top-10 w-32 h-32 bg-gray-100 blur-3xl" />
           <div className="absolute right-[-14%] bottom-[-14%] w-40 h-40 bg-gray-50 blur-3xl" />

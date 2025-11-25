@@ -1,7 +1,8 @@
 import { newsPosts } from '../data/news'
 
+const placeholderImg = 'https://placehold.co/96x96?text=News'
+
 const News = () => {
-  const placeholderImg = 'https://placehold.co/96x96?text=News'
 
   return (
     <div className="max-w-5xl mx-auto py-12 px-6 space-y-6">
