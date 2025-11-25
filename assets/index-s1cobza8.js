@@ -504,7 +504,7 @@ img: /img/KCS_Wonwoo.jpg
 # img: "/img/photo.jpg" 또는 "https://..."
 title: 구성원들의 점심식사
 date: 2025-11-25
-img: https://placehold.co/400x300?text=Lunch
+img: /image/251125_Lunch.jpg
 ---
 `,Yr={"../content/gallery/2025-10-24-kcs-wonwoo.md":qr,"../content/gallery/2025-11-25-lunch.md":Jr};const Xr=Object.entries(Yr).map(([e,t])=>{let{data:n}=k(t),r=e.split(`/`).pop()?.replace(`.md`,``)??e,i=n.date??``;return{title:n.title??r,date:i,img:An(n.img),slug:r}}).sort((e,t)=>{let n=kn(t.date)-kn(e.date);return n===0?e.title.localeCompare(t.title):n});var Zr=()=>(0,j.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6`,children:[(0,j.jsx)(`div`,{className:`flex items-center justify-between mb-6`,children:(0,j.jsx)(`div`,{className:`space-y-2`,children:(0,j.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Gallery`})})}),(0,j.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4`,children:Xr.map(e=>(0,j.jsxs)(`div`,{className:`group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel`,children:[(0,j.jsx)(`img`,{src:e.img,alt:e.title,className:`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110`}),(0,j.jsx)(`div`,{className:`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4`,children:(0,j.jsx)(`span`,{className:`text-white font-medium text-lg`,children:e.title})})]},e.slug))})]}),Qr=`---
 # 작성 예시:
