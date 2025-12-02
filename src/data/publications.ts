@@ -1,5 +1,6 @@
 import type { PublicationEntry } from '../types/content'
 
+// Publications are stored as frontmatter blocks to keep content non-developers friendly
 const files = import.meta.glob('../content/publications/*.md', { eager: true, query: '?raw', import: 'default' }) as Record<
   string,
   string
@@ -15,6 +16,7 @@ interface ParsedPublication {
   items: RawPublicationItem[]
 }
 
+// Minimal parser for the frontmatter-style publications format
 const parsePublicationFile = (raw: string): ParsedPublication => {
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---/)
   if (!match) return { year: 0, items: [] }

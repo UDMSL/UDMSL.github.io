@@ -10,7 +10,7 @@ interface TabItem {
   path: string
 }
 
-// 탭 구성과 라우팅 경로를 한 곳에서 관리하면 경로 변경 시 유지보수가 쉬움
+// Central tab definition keeps navigation and routing aligned
 const tabs: TabItem[] = [
   { id: 'Home', label: 'Home', path: '/' },
   { id: 'Jeongho Kim', label: 'Jeongho Kim', path: '/professor' },

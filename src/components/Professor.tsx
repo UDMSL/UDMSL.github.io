@@ -1,6 +1,7 @@
 import { professorProfile } from '../data/professor'
 import { Mail, Phone, MapPin, FileText } from 'lucide-react'
 
+// Prevents broken UI when the profile image fails to load
 const placeholderImg = 'https://placehold.co/400x500/1e3a8a/FFF?text=Prof.+Jeongho+Kim'
 
 const Professor = () => {

@@ -1,6 +1,7 @@
 import { parseFrontmatter, resolveImagePath } from '../utils/markdown'
 import type { ResearchData, ResearchHighlight, ResearchIntro } from '../types/content'
 
+// Load research content from Markdown to keep text author-friendly
 const introFiles = import.meta.glob('../content/research/intro-*.md', {
   eager: true,
   query: '?raw',
@@ -18,6 +19,7 @@ const splitParagraphs = (content: string): string[] =>
     .map((p) => p.trim())
     .filter(Boolean)
 
+// Build bilingual intro sections keyed by lang metadata
 const intro = Object.entries(introFiles).reduce<ResearchIntro>(
   (acc, [, raw]) => {
     const { data, content } = parseFrontmatter(raw)

@@ -3,6 +3,7 @@ export interface FrontmatterResult {
   content: string
 }
 
+// Lightweight frontmatter parser for Markdown-like content
 export const parseFrontmatter = (raw: string): FrontmatterResult => {
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/)
   if (!match) return { data: {}, content: raw.trim() }
@@ -26,6 +27,7 @@ export const toTimestamp = (value: string): number => {
   return Number.isNaN(time) ? 0 : time
 }
 
+// Normalize relative image paths against the app base URL
 export const resolveImagePath = (value: unknown): string => {
   const img = (typeof value === 'string' ? value : '').trim()
   if (!img) return ''

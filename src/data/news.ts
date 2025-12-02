@@ -1,6 +1,7 @@
 import { parseFrontmatter, toTimestamp } from '../utils/markdown'
 import type { NewsPost } from '../types/content'
 
+// Load news posts from Markdown and keep them sorted by recency
 const newsFiles = import.meta.glob('../content/news/*.md', { eager: true, query: '?raw', import: 'default' }) as Record<
   string,
   string

@@ -1,9 +1,9 @@
 import { newsPosts } from '../data/news'
 
+// Use a stable placeholder to avoid broken thumbnails
 const placeholderImg = 'https://placehold.co/96x96?text=News'
 
 const News = () => {
-
   return (
     <div className="max-w-5xl mx-auto py-12 px-6 space-y-6">
       <div className="space-y-2">

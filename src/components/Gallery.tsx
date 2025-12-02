@@ -1,5 +1,7 @@
 import { galleryImages } from '../data/gallery'
 
+// Simple grid, no pagination because dataset is small
+
 const Gallery = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-6">

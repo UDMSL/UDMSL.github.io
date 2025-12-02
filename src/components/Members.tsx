@@ -1,6 +1,8 @@
 import { membersData } from '../data/members'
 import { Mail } from 'lucide-react'
 
+// Keep current and alumni lists separate to avoid mixing statuses
+
 const Members = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-6">

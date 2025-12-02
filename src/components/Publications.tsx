@@ -24,6 +24,7 @@ const Publications = () => {
                 </span>
                 <div className="flex-grow">
                   <p className="text-gray-800 leading-relaxed font-medium">{pub.text}</p>
+                  {/* Prefer DOI when present, otherwise link to a Scholar search */}
                   <div className="mt-3 flex flex-wrap gap-2">
                     {!hasDoi && (
                       <a

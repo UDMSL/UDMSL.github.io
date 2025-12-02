@@ -2,6 +2,7 @@ import { parseFrontmatter, resolveImagePath } from '../utils/markdown'
 import { generalInfo } from './general'
 import type { ProfessorProfile, TimelineEntry } from '../types/content'
 
+// Normalize timeline-like frontmatter arrays into a safe typed shape
 const normalizeTimeline = (entries: unknown): TimelineEntry[] =>
   Array.isArray(entries)
     ? (entries as unknown[])
@@ -16,6 +17,7 @@ const normalizeTimeline = (entries: unknown): TimelineEntry[] =>
         .filter((entry): entry is TimelineEntry => Boolean(entry))
     : []
 
+// Load professor profile from Markdown frontmatter for easy content edits
 const files = import.meta.glob('../content/professor.md', { eager: true, query: '?raw', import: 'default' }) as Record<
   string,
   string

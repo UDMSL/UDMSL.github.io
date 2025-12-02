@@ -1,6 +1,7 @@
 import { parseFrontmatter, resolveImagePath, toTimestamp } from '../utils/markdown'
 import type { GalleryImage } from '../types/content'
 
+// Gallery entries come from Markdown for quick content updates
 const files = import.meta.glob('../content/gallery/*.md', { eager: true, query: '?raw', import: 'default' }) as Record<
   string,
   string

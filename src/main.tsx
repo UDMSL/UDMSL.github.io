@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 
-// Tailwind가 적용되도록 이 줄을 반드시 포함하세요.
+// Pull in Tailwind layers before rendering
 import './index.css'
 
 const rootElement = document.getElementById('root')

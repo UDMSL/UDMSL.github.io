@@ -1,6 +1,7 @@
 import { parseFrontmatter } from '../utils/markdown'
 import type { GeneralInfo } from '../types/content'
 
+// Pull general site metadata from Markdown frontmatter at build time
 const files = import.meta.glob('../content/general.md', { eager: true, query: '?raw', import: 'default' }) as Record<
   string,
   string

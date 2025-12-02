@@ -37,6 +37,7 @@ const Research = () => {
 
       <div className="space-y-10">
         <h3 className="text-2xl font-bold text-center text-gray-900">Key Methodologies</h3>
+        {/* Alternate alignment per index to avoid repetitive visual rhythm */}
         {researchData.highlights.map((res, idx) => {
           const imageRounded =
             idx % 2 === 0 ? 'md:rounded-l-2xl md:rounded-r-none' : 'md:rounded-r-2xl md:rounded-l-none'

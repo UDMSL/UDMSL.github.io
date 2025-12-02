@@ -1,9 +1,10 @@
 import { parseFrontmatter, resolveImagePath } from '../utils/markdown'
 import type { MemberProfile } from '../types/content'
 
+// Utility to load and sort member markdown into typed data
 const mapFiles = (
   files: Record<string, string>,
-  mapper: (data: Record<string, unknown>, slug: string) => MemberProfile,
+  mapper: (_data: Record<string, unknown>, _slug: string) => MemberProfile,
 ): MemberProfile[] =>
   Object.entries(files)
     .map(([path, raw]) => {

@@ -3,9 +3,9 @@ import { professorProfile } from '../data/professor'
 import { researchData } from '../data/research'
 
 const Home = () => {
-
   return (
     <div className="animate-rise">
+      {/* Landing hero carries lab branding */}
       <section className="relative overflow-hidden text-white">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0b1535] via-[#10235a] to-[#0b173c]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(59,130,246,0.24),transparent_25%),radial-gradient(circle_at_85%_20%,rgba(14,165,233,0.18),transparent_24%)]" />
@@ -21,6 +21,7 @@ const Home = () => {
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-2xl font-bold text-gray-900">공지사항 / Notice</h2>
           </div>
+          {/* Keep KOR/ENG cards in sync when content updates */}
           <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
             <div className="glass-panel rounded-2xl p-6 border border-gray/70 shadow-xl space-y-3 transition-transform">
               <div className="flex items-center justify-between">
