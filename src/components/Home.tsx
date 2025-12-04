@@ -1,9 +1,20 @@
 import { generalInfo } from '../data/general'
 import { professorProfile } from '../data/professor'
 import { researchData } from '../data/research'
+import { galleryImages } from '../data/gallery'
+import { usePrefetchImages } from '../hooks/usePrefetchImages'
 import WebpImage from './WebpImage'
 
 const Home = () => {
+  usePrefetchImages(
+    [
+      professorProfile.img,
+      ...researchData.highlights.map((item) => item.img),
+      ...galleryImages.slice(0, 6).map((item) => item.img),
+    ],
+    { delayMs: 900, max: 10 },
+  )
+
   return (
     <div className="animate-rise">
       {/* Landing hero carries lab branding */}

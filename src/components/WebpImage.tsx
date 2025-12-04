@@ -1,21 +1,11 @@
-import { useEffect, useMemo, useState, type ImgHTMLAttributes } from 'react'
+import { useMemo, useState, type ImgHTMLAttributes } from 'react'
+import { toWebpUrl } from '../utils/images'
 
 type WebpImageProps = ImgHTMLAttributes<HTMLImageElement> & {
   /**
    * Optional final fallback (e.g., placeholder). The original source is always tried before this.
    */
   fallbackSrc?: string
-}
-
-// Convert common raster extensions to a WebP URL while preserving query strings.
-const toWebpUrl = (src: string): string => {
-  if (!src || /^data:/i.test(src)) return src
-
-  const [path, query] = src.split('?', 2)
-  if (!/\.(png|jpe?g)$/i.test(path)) return src
-
-  const webpPath = path.replace(/\.(png|jpe?g)$/i, '.webp')
-  return query ? `${webpPath}?${query}` : webpPath
 }
 
 /**
@@ -35,24 +25,26 @@ const WebpImage = ({ src = '', fallbackSrc, onError, ...rest }: WebpImageProps) 
     return queue
   }, [src, fallbackSrc])
 
-  const [sourceIndex, setSourceIndex] = useState(0)
-
-  useEffect(() => {
-    setSourceIndex(0)
-  }, [sourceQueue])
+  const queueKey = sourceQueue.join('|')
+  const [sourceState, setSourceState] = useState(() => ({ key: queueKey, index: 0 }))
 
   const handleError: React.ReactEventHandler<HTMLImageElement> = (event) => {
-    const nextIndex = sourceIndex + 1
-    if (nextIndex < sourceQueue.length) {
-      setSourceIndex(nextIndex)
-      return
-    }
+    setSourceState((prev) => {
+      const baseIndex = prev.key === queueKey ? prev.index : 0
+      const nextIndex = baseIndex + 1
 
-    // Allow caller-specific error handling once all fallbacks are exhausted.
-    onError?.(event)
+      if (nextIndex < sourceQueue.length) {
+        return { key: queueKey, index: nextIndex }
+      }
+
+      // Allow caller-specific error handling once all fallbacks are exhausted.
+      onError?.(event)
+      return prev
+    })
   }
 
-  const currentSrc = sourceQueue[sourceIndex] ?? ''
+  const currentIndex = sourceState.key === queueKey ? sourceState.index : 0
+  const currentSrc = sourceQueue[Math.min(currentIndex, sourceQueue.length - 1)] ?? ''
 
   return <img src={currentSrc} onError={handleError} {...rest} />
 }
