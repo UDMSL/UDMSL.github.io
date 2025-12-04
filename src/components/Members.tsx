@@ -1,5 +1,6 @@
-import { membersData } from '../data/members'
 import { Mail } from 'lucide-react'
+import { membersData } from '../data/members'
+import WebpImage from './WebpImage'
 
 // Keep current and alumni lists separate to avoid mixing statuses
 
@@ -15,11 +16,7 @@ const Members = () => {
             key={member.name}
             className="glass-panel rounded-xl p-4 border border-gray-200/80 flex items-center gap-4 hover:-translate-y-1 transition transform shadow-md"
           >
-            <img
-              src={member.img}
-              alt={member.name}
-              className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm"
-            />
+            <WebpImage src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
             <div className="min-w-0">
               <h3 className="font-bold text-gray-800 truncate">{member.name}</h3>
               <p className="text-primary font-medium text-sm truncate">{member.degree}</p>
@@ -46,7 +43,7 @@ const Members = () => {
             key={`${member.name}-${member.currentPos}`}
             className="glass-panel rounded-xl p-4 border border-gray-200/70 flex items-center gap-4 opacity-95 shadow-sm"
           >
-            <img
+            <WebpImage
               src={member.img}
               alt={member.name}
               className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm grayscale"

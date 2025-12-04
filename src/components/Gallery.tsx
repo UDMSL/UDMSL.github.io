@@ -1,4 +1,5 @@
 import { galleryImages } from '../data/gallery'
+import WebpImage from './WebpImage'
 
 // Simple grid, no pagination because dataset is small
 
@@ -13,7 +14,7 @@ const Gallery = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {galleryImages.map((item) => (
           <div key={item.slug} className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel">
-            <img
+            <WebpImage
               src={item.img}
               alt={item.title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

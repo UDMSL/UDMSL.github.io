@@ -1,5 +1,6 @@
-import { professorProfile } from '../data/professor'
 import { Mail, Phone, MapPin, FileText } from 'lucide-react'
+import { professorProfile } from '../data/professor'
+import WebpImage from './WebpImage'
 
 // Prevents broken UI when the profile image fails to load
 const placeholderImg = 'https://placehold.co/400x500/1e3a8a/FFF?text=Prof.+Jeongho+Kim'
@@ -23,12 +24,9 @@ const Professor = () => {
       <div className="glass-panel rounded-2xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row gap-10 items-start border border-gray/70">
         <div className="w-full md:w-1/3">
           <div className="rounded-xl overflow-hidden shadow-lg border border-white/60 bg-white/80 relative transition-transform duration-500 hover:scale-[1.02]">
-            <img
+            <WebpImage
               src={professorProfile.img}
-              onError={(e) => {
-                e.currentTarget.onerror = null
-                e.currentTarget.src = placeholderImg
-              }}
+              fallbackSrc={placeholderImg}
               alt="Jeongho Kim"
               className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
             />

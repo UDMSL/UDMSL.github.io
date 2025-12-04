@@ -1,4 +1,5 @@
 import { newsPosts } from '../data/news'
+import WebpImage from './WebpImage'
 
 // Use a stable placeholder to avoid broken thumbnails
 const placeholderImg = 'https://placehold.co/96x96?text=News'
@@ -21,8 +22,9 @@ const News = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-gray-700 whitespace-pre-line">{item.content}</p>
               </div>
-              <img
+              <WebpImage
                 src={item.image || placeholderImg}
+                fallbackSrc={placeholderImg}
                 alt={`${item.title} thumbnail`}
                 className="w-20 h-20 rounded-full object-cover border border-gray-100 shadow-sm flex-shrink-0"
               />

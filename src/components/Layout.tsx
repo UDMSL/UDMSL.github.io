@@ -1,8 +1,9 @@
 import { useState, type ReactNode } from 'react'
+import { Menu, X, Mail, Phone } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { generalInfo } from '../data/general'
 import { professorProfile } from '../data/professor'
-import { Menu, X, Mail, Phone } from 'lucide-react'
+import WebpImage from './WebpImage'
 
 interface TabItem {
   id: string
@@ -43,7 +44,7 @@ const Layout = ({ children }: LayoutProps) => {
           <div className="flex justify-between h-16">
             {/* Logo */}
             <NavLink to="/" className="flex items-center cursor-pointer gap-3">
-              <img src="/img/Emblem.png" alt="UDMS Lab Emblem" className="w-10 h-10 object-contain" />
+              <WebpImage src="/img/Emblem.png" alt="UDMS Lab Emblem" className="w-10 h-10 object-contain" />
               <div className="flex flex-col">
                 <span className="font-bold text-2xl text-primary leading-none">{generalInfo.labShortName}</span>
                 <span className="text-xs text-gray-500 hidden md:block">{generalInfo.labName}</span>
@@ -105,7 +106,7 @@ const Layout = ({ children }: LayoutProps) => {
               <p className="text-sm text-gray-400">{generalInfo.address}</p>
             </div>
             <div className="flex items-center gap-3 md:self-start">
-              <img
+              <WebpImage
                 src="/img/Signature.png"
                 alt="Signature"
                 className="w-auto opacity-100 pointer-events-none select-none"

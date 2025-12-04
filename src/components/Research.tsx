@@ -1,4 +1,5 @@
 import { researchData } from '../data/research'
+import WebpImage from './WebpImage'
 
 const Research = () => {
   return (
@@ -50,7 +51,7 @@ const Research = () => {
               }`}
             >
               <div className={`w-full md:w-1/2 min-h-[280px] md:min-h-[340px] overflow-hidden ${imageRounded}`}>
-                <img
+                <WebpImage
                   src={res.img}
                   alt={res.title}
                   className="w-full h-full object-cover scale-110 rounded-2xl transition-transform duration-700"

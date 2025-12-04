@@ -1,6 +1,7 @@
 import { generalInfo } from '../data/general'
 import { professorProfile } from '../data/professor'
 import { researchData } from '../data/research'
+import WebpImage from './WebpImage'
 
 const Home = () => {
   return (
@@ -131,7 +132,7 @@ const Home = () => {
               className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-1 transition transform shadow-lg border border-gray/70 flex flex-col hover:shadow-2xl"
             >
               <div className="relative w-full h-48 md:h-56 overflow-hidden">
-                <img
+                <WebpImage
                   src={item.img}
                   alt={item.title}
                   className="w-full h-full object-cover transition duration-500 hover:scale-105"

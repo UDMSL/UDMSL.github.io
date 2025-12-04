@@ -1,4 +1,4 @@
-import { parseFrontmatter, toTimestamp } from '../utils/markdown'
+import { parseFrontmatter, resolveImagePath, toTimestamp } from '../utils/markdown'
 import type { NewsPost } from '../types/content'
 
 // Load news posts from Markdown and keep them sorted by recency
@@ -12,12 +12,14 @@ export const newsPosts: NewsPost[] = Object.entries(newsFiles)
     const { data, content } = parseFrontmatter(raw)
     const slug = path.split('/').pop()?.replace('.md', '') ?? path
 
+    const image = resolveImagePath(data.image)
+
     return {
       date: (data.date as string) ?? '',
       title: (data.title as string) ?? slug,
       content,
       slug,
-      image: typeof data.image === 'string' ? data.image : undefined,
+      image: image || undefined,
     }
   })
   .sort((a, b) => toTimestamp(b.date) - toTimestamp(a.date))
