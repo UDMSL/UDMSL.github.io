@@ -102,17 +102,34 @@ const Layout = ({ children }: LayoutProps) => {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div className="space-y-1">
               <h4 className="text-white font-bold text-lg">{generalInfo.labName}</h4>
-              <p className="text-sm font-semibold">{generalInfo.affiliation}</p>
+              <a
+                href="https://chemistry.inha.ac.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold hover:text-white transition-colors"
+              >
+                {generalInfo.affiliation}
+              </a>
               <p className="text-sm text-gray-400">{generalInfo.address}</p>
             </div>
-            <div className="flex items-center gap-3 md:self-start">
+            <a
+              href="https://www.inha.ac.kr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 md:self-start"
+            >
               <WebpImage
                 src="/img/Signature.png"
                 alt="Signature"
                 className="w-auto opacity-100 pointer-events-none select-none"
-                style={{ height: '3.5rem', filter: 'grayscale(1) invert(1) brightness(1.33)' }}
+                style={{
+                  height: '3.5rem',
+                  filter: 'grayscale(1) invert(1) brightness(1.45)',
+                  mixBlendMode: 'screen',
+                  opacity: 0.9,
+                }}
               />
-            </div>
+            </a>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-400">
