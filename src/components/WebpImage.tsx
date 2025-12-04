@@ -1,3 +1,4 @@
+import type React from 'react'
 import { useMemo, useState, type ImgHTMLAttributes } from 'react'
 import { toWebpUrl } from '../utils/images'
 
