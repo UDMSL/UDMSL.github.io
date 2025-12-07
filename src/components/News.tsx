@@ -1,5 +1,6 @@
 import { newsPosts } from '../data/news'
 import WebpImage from './WebpImage'
+import Reveal from './Reveal'
 
 // Use a stable placeholder to avoid broken thumbnails
 const placeholderImg = 'https://placehold.co/96x96?text=News'
@@ -7,13 +8,14 @@ const placeholderImg = 'https://placehold.co/96x96?text=News'
 const News = () => {
   return (
     <div className="max-w-5xl mx-auto py-12 px-6 space-y-6">
-      <div className="space-y-2">
+      <Reveal className="space-y-2">
         <h2 className="text-3xl font-bold text-gray-900">Lab News</h2>
-      </div>
+      </Reveal>
       <div className="space-y-6">
-        {newsPosts.map((item) => (
-          <div
+        {newsPosts.map((item, idx) => (
+          <Reveal
             key={item.slug}
+            delay={idx * 30}
             className="glass-panel p-6 rounded-2xl shadow-lg border border-white/70 transition-transform duration-200 hover:scale-[1.01] hover:shadow-xl"
           >
             <div className="flex items-center gap-4">
@@ -29,7 +31,7 @@ const News = () => {
                 className="w-20 h-20 rounded-full object-cover border border-gray-100 shadow-sm flex-shrink-0"
               />
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </div>

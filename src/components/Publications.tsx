@@ -1,12 +1,13 @@
 import { publicationList } from '../data/publications'
 import { ExternalLink } from 'lucide-react'
+import Reveal from './Reveal'
 
 const Publications = () => {
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
-      <div className="space-y-3 mb-6">
+    <div className="max-w-6xl mx-auto py-12 px-6 space-y-6">
+      <Reveal className="space-y-3">
         <h2 className="text-3xl font-bold text-gray-900">Publications</h2>
-      </div>
+      </Reveal>
       <div className="glass-panel rounded-2xl shadow-xl border border-gray/70 overflow-hidden">
         {publicationList.map((pub, idx) => {
           const hasDoi = Boolean(pub.doi)
@@ -14,10 +15,7 @@ const Publications = () => {
           const doiUrl = hasDoi ? `https://doi.org/${pub.doi}` : ''
 
           return (
-            <div
-              key={pub.slug}
-              className={`relative p-6 ${idx !== publicationList.length - 1 ? 'border-b border-gray/60' : ''} bg-white/70`}
-            >
+            <Reveal key={pub.slug} className={`relative p-6 ${idx !== publicationList.length - 1 ? 'border-b border-gray/60' : ''} bg-white/70`}>
               <div className="flex gap-4 items-start">
                 <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0 shadow-sm">
                   {pub.year}
@@ -49,7 +47,7 @@ const Publications = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           )
         })}
       </div>

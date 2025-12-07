@@ -19,3 +19,33 @@
 
 @layer utilities {
 }
+
+.reveal {
+    /* Dynamically updated by observer; defaults keep items hidden until observed */
+    --reveal-opacity: 0;
+    --reveal-shift-x: 0px;
+    --reveal-shift-y: 18px;
+    opacity: var(--reveal-opacity, 0);
+    transform: translate3d(
+        calc(var(--reveal-shift-x, 0px) * (1 - var(--reveal-opacity, 0))),
+        calc(var(--reveal-shift-y, 18px) * (1 - var(--reveal-opacity, 0))),
+        0
+    ) scale(calc(0.98 + 0.02 * var(--reveal-opacity, 0)));
+    transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal-visible {
+    /* keep transforms pinned when fully visible */
+    opacity: var(--reveal-opacity, 1);
+    transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

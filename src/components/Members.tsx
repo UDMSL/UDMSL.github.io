@@ -1,19 +1,21 @@
 import { Mail } from 'lucide-react'
 import { membersData } from '../data/members'
 import WebpImage from './WebpImage'
+import Reveal from './Reveal'
 
 // Keep current and alumni lists separate to avoid mixing statuses
 
 const Members = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-6">
-      <div className="space-y-3 mb-8">
+      <Reveal className="space-y-3 mb-8">
         <h2 className="text-3xl font-bold text-primary">Current Members</h2>
-      </div>
+      </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
-        {membersData.current.map((member) => (
-          <div
+        {membersData.current.map((member, idx) => (
+          <Reveal
             key={member.name}
+            delay={idx * 25}
             className="glass-panel rounded-xl p-4 border border-gray-200/80 flex items-center gap-4 hover:-translate-y-1 transition transform shadow-md"
           >
             <WebpImage src={member.img} alt={member.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
@@ -30,17 +32,18 @@ const Members = () => {
               )}
               {member.currentPos && <p className="text-gray-500 text-xs mt-1 truncate">Current: {member.currentPos}</p>}
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 
-      <div className="space-y-2 mb-8">
+      <Reveal className="space-y-2 mb-8">
         <h2 className="text-3xl font-bold text-gray-800">Alumni</h2>
-      </div>
+      </Reveal>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {membersData.alumni.map((member) => (
-          <div
+        {membersData.alumni.map((member, idx) => (
+          <Reveal
             key={`${member.name}-${member.currentPos}`}
+            delay={idx * 20}
             className="glass-panel rounded-xl p-4 border border-gray-200/70 flex items-center gap-4 opacity-95 shadow-sm"
           >
             <WebpImage
@@ -61,7 +64,7 @@ const Members = () => {
               )}
               {member.currentPos && <p className="text-gray-500 text-xs mt-1">Current: {member.currentPos}</p>}
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, FileText } from 'lucide-react'
 import { professorProfile } from '../data/professor'
 import WebpImage from './WebpImage'
+import Reveal from './Reveal'
 
 // Prevents broken UI when the profile image fails to load
 const placeholderImg = 'https://placehold.co/400x500/1e3a8a/FFF?text=Prof.+Jeongho+Kim'
@@ -8,7 +9,7 @@ const placeholderImg = 'https://placehold.co/400x500/1e3a8a/FFF?text=Prof.+Jeong
 const Professor = () => {
   return (
     <div className="max-w-6xl mx-auto py-12 px-6 space-y-8">
-      <div className="relative overflow-hidden rounded-2xl border border-gray/70 bg-white text-gray-900 shadow-xl p-6 md:p-7">
+      <Reveal className="relative overflow-hidden rounded-2xl border border-gray/70 bg-white text-gray-900 shadow-xl p-6 md:p-7">
         <div className="absolute inset-0 pointer-events-none opacity-50">
           <div className="absolute -left-10 -top-10 w-32 h-32 bg-gray-100 blur-3xl" />
           <div className="absolute right-[-14%] bottom-[-14%] w-40 h-40 bg-gray-50 blur-3xl" />
@@ -19,9 +20,9 @@ const Professor = () => {
             {professorProfile.title} / {professorProfile.affiliation}
           </p>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="glass-panel rounded-2xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row gap-10 items-start border border-gray/70">
+      <Reveal className="glass-panel rounded-2xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row gap-10 items-start border border-gray/70" delay={25}>
         <div className="w-full md:w-1/3">
           <div className="rounded-xl overflow-hidden shadow-lg border border-white/60 bg-white/80 relative transition-transform duration-500 hover:scale-[1.02]">
             <WebpImage
@@ -57,7 +58,7 @@ const Professor = () => {
           </a>
         </div>
 
-        <div className="w-full md:w-2/3 space-y-8">
+        <Reveal className="w-full md:w-2/3 space-y-8" delay={35}>
           <div>
             <h3 className="text-2xl font-bold text-gray-900 border-b border-gray-200 pb-2 mb-4">Biography</h3>
             {professorProfile.bio.map((line) => (
@@ -90,8 +91,8 @@ const Professor = () => {
               ))}
             </ul>
           </div>
-        </div>
-      </div>
+        </Reveal>
+      </Reveal>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { researchData } from '../data/research'
 import WebpImage from './WebpImage'
+import Reveal from './Reveal'
 
 const Research = () => {
   return (
@@ -7,7 +8,7 @@ const Research = () => {
       <div className="text-center space-y-3">
       </div>
       <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-        <div className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform">
+        <Reveal className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform" variant="slide-left">
           <div className="p-6 md:p-7 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-gray-900">연구 개요</h3>
@@ -19,9 +20,13 @@ const Research = () => {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform">
+        <Reveal
+          className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform"
+          delay={40}
+          variant="slide-right"
+        >
           <div className="p-6 md:p-7 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-gray-900">Research Overview</h3>
@@ -33,7 +38,7 @@ const Research = () => {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <div className="space-y-10">
@@ -44,8 +49,9 @@ const Research = () => {
             idx % 2 === 0 ? 'md:rounded-l-2xl md:rounded-r-none' : 'md:rounded-r-2xl md:rounded-l-none'
 
           return (
-            <div
+            <Reveal
               key={res.slug}
+              delay={idx * 45}
               className={`glass-panel group rounded-2xl overflow-hidden shadow-xl border border-gray/70 flex flex-col transition-transform ${
                 idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
@@ -64,7 +70,7 @@ const Research = () => {
                   {res.detail}
                 </p>
               </div>
-            </div>
+            </Reveal>
           )
         })}
       </div>

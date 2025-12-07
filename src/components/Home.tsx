@@ -4,6 +4,7 @@ import { researchData } from '../data/research'
 import { galleryImages } from '../data/gallery'
 import { usePrefetchImages } from '../hooks/usePrefetchImages'
 import WebpImage from './WebpImage'
+import Reveal from './Reveal'
 
 const Home = () => {
   usePrefetchImages(
@@ -16,26 +17,30 @@ const Home = () => {
   )
 
   return (
-    <div className="animate-rise">
+    <div className="space-y-12">
       {/* Landing hero carries lab branding */}
-      <section className="relative overflow-hidden text-white">
+      <Reveal as="section" className="relative overflow-hidden text-white">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0b1535] via-[#10235a] to-[#0b173c]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(59,130,246,0.24),transparent_25%),radial-gradient(circle_at_85%_20%,rgba(14,165,233,0.18),transparent_24%)]" />
         <div className="max-w-6xl mx-auto px-6 py-20 relative z-10 text-center space-y-4">
           <h1 className="text-3xl md:text-5xl font-bold leading-tight">{generalInfo.labName}</h1>
           <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">{generalInfo.affiliation}</p>
         </div>
-      </section>
+      </Reveal>
 
       {/* Recruitment Notice */}
-      <section className="py-12 px-6">
+      <Reveal as="section" className="py-12 px-6">
         <div className="max-w-6xl mx-auto space-y-4">
           <div className="flex items-start justify-between gap-3">
             <h2 className="text-2xl font-bold text-gray-900">공지사항 / Notice</h2>
           </div>
           {/* Keep KOR/ENG cards in sync when content updates */}
           <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
-            <div className="glass-panel rounded-2xl p-6 border border-gray/70 shadow-xl space-y-3 transition-transform">
+            <Reveal
+              variant="slide-left"
+              className="glass-panel rounded-2xl p-6 border border-gray/70 shadow-xl space-y-3 transition-transform"
+              delay={25}
+            >
               <div className="flex items-center justify-between">
                 <span className="text-xl font-semibold text-primary">모집 안내</span>
                 <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-primary font-semibold">KOR</span>
@@ -79,9 +84,13 @@ const Home = () => {
                   에 나와 있는 연구 실적들을 살펴봐 주시기 바랍니다. 저희 연구실의 문은 언제나 활짝 열려 있습니다!!
                 </p>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="glass-panel rounded-2xl p-6 border border-gray/70 shadow-xl space-y-3 transition-transform">
+            <Reveal
+              variant="slide-right"
+              className="glass-panel rounded-2xl p-6 border border-gray/70 shadow-xl space-y-3 transition-transform"
+              delay={55}
+            >
               <div className="flex items-center justify-between">
                 <span className="text-xl font-semibold text-primary">Recruiting</span>
                 <span className="text-xs px-3 py-1 rounded-full bg-indigo-100 text-primary font-semibold">ENG</span>
@@ -126,20 +135,21 @@ const Home = () => {
                   . Our research group always welcomes you!!
                 </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* Research Highlights */}
-      <section className="max-w-7xl mx-auto py-12 px-6">
+      <Reveal as="section" className="max-w-7xl mx-auto py-12 px-6">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mt-3">Research Highlights</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {researchData.highlights.map((item, idx) => (
-            <div
-              key={idx}
+            <Reveal
+              key={item.title}
+              delay={idx * 30}
               className="glass-panel rounded-2xl overflow-hidden hover:-translate-y-1 transition transform shadow-lg border border-gray/70 flex flex-col hover:shadow-2xl"
             >
               <div className="relative w-full h-48 md:h-56 overflow-hidden">
@@ -153,10 +163,10 @@ const Home = () => {
                 <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
                 <p className="text-sm text-gray-700 leading-relaxed">{item.desc}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
-      </section>
+      </Reveal>
     </div>
   )
 }

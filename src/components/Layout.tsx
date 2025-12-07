@@ -1,6 +1,6 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Menu, X, Mail, Phone } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { generalInfo } from '../data/general'
 import { professorProfile } from '../data/professor'
 import WebpImage from './WebpImage'
@@ -36,6 +36,13 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Ensure each tab change starts at top of page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans text-gray-900">
       {/* Navbar */}
