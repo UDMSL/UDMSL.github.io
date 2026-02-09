@@ -5,10 +5,10 @@
 # email: "이메일"
 # currentPos: "졸업 후 근무지(졸업생용)"
 # img: "/img/photo.jpg" 또는 "https://..."
-name: Jooeun Park
+name: Hyunil Choi
 order: 3
-degree: M.S. Student
-email: pjk228@inha.edu
+degree: Undergraduate
+email: kmrwin1@naver.com
 currentPos: ""
-img: https://placehold.co/150x150?text=JP
+img: https://placehold.co/150x150?text=HC
 ---
