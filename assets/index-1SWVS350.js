@@ -147,12 +147,12 @@ img: /img/251125_Lunch.jpg
 # email: "이메일"
 # currentPos: "졸업 후 근무지(졸업생용)"
 # img: "/img/photo.jpg" 또는 "https://..."
-name: Jaehoon Jeong
-order: 2
-degree: M.S. Student
-email: julyvine720@inha.edu
+name: Hyunil Choi
+order: 3
+degree: Undergraduate
+email: kmrwin1@naver.com
 currentPos: ""
-img: https://placehold.co/150x150?text=JJ
+img: https://placehold.co/150x150?text=HC
 ---
 `,Dr=`---
 # 작성 예시:
@@ -161,14 +161,28 @@ img: https://placehold.co/150x150?text=JJ
 # email: "이메일"
 # currentPos: "졸업 후 근무지(졸업생용)"
 # img: "/img/photo.jpg" 또는 "https://..."
+name: Jaehoon Jeong
+order: 2
+degree: M.S. Student
+email: julyvine720@inha.edu
+currentPos: ""
+img: https://placehold.co/150x150?text=JJ
+---
+`,Or=`---
+# 작성 예시:
+# name: "이름"
+# degree: "학위/직함"
+# email: "이메일"
+# currentPos: "졸업 후 근무지(졸업생용)"
+# img: "/img/photo.jpg" 또는 "https://..."
 name: Jooeun Park
 order: 3
-degree: Undergraduate
+degree: M.S. Student
 email: pjk228@inha.edu
 currentPos: ""
 img: https://placehold.co/150x150?text=JP
 ---
-`,Or=`---
+`,kr=`---
 # 작성 예시:
 # name: "이름"
 # degree: "학위/직함"
@@ -182,7 +196,7 @@ email: twinboy@inha.edu
 currentPos: ""
 img: https://placehold.co/150x150?text=WS
 ---
-`,kr=`---
+`,Ar=`---
 # 작성 예시:
 # name: "이름"
 # degree: "학위/직함"
@@ -196,7 +210,7 @@ currentPos: ""
 email: ""
 img: https://placehold.co/150x150?text=SC
 ---
-`,Ar=`---
+`,jr=`---
 # 작성 예시:
 # name: "이름"
 # degree: "학위/직함"
@@ -210,7 +224,7 @@ currentPos: ""
 email: ""
 img: https://placehold.co/150x150?text=YH
 ---
-`,jr=`---
+`,Mr=`---
 # 작성 예시:
 # name: "이름"
 # degree: "학위/직함"
@@ -224,7 +238,7 @@ currentPos: ""
 email: ""
 img: https://placehold.co/150x150?text=YL
 ---
-`,Mr=(e,t)=>Object.entries(e).map(([e,n])=>{let{data:r}=Wn(n);return t(r,e.split(`/`).pop()?.replace(`.md`,``)??e)}).sort((e,t)=>e.order-t.order||e.name.localeCompare(t.name)),Nr={"../content/members/current/jaehoon-jeong.md":Er,"../content/members/current/jooeun-park.md":Dr,"../content/members/current/wonwoo-shin.md":Or},Pr={"../content/members/alumni/seungjoo-choi.md":kr,"../content/members/alumni/yoojin-hwang.md":Ar,"../content/members/alumni/youngsoo-lim.md":jr};const Fr={current:Mr(Nr,(e,t)=>({name:e.name??t,order:Number.isFinite(Number(e.order))?Number(e.order):1/0,degree:e.degree??e.role??``,email:e.email??``,currentPos:e.currentPos??``,img:Kn(e.img)})),alumni:Mr(Pr,(e,t)=>({name:e.name??t,order:Number.isFinite(Number(e.order))?Number(e.order):1/0,degree:e.degree??e.role??``,email:e.email??``,currentPos:e.currentPos??``,img:Kn(e.img)}))};var Ir=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6`,children:[(0,A.jsx)(j,{className:`space-y-3 mb-8`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-primary`,children:`Current Members`})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16`,children:Fr.current.map((e,t)=>(0,A.jsxs)(j,{delay:t*25,className:`glass-panel rounded-xl p-4 border border-gray-200/80 flex items-center gap-4 hover:-translate-y-1 transition transform shadow-md`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.name,className:`w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm`}),(0,A.jsxs)(`div`,{className:`min-w-0`,children:[(0,A.jsx)(`h3`,{className:`font-bold text-gray-800 truncate`,children:e.name}),(0,A.jsx)(`p`,{className:`text-primary font-medium text-sm truncate`,children:e.degree}),e.email&&(0,A.jsxs)(`a`,{href:`mailto:${e.email}`,className:`text-gray-500 text-xs flex items-center gap-1 mt-1 truncate hover:text-primary`,children:[(0,A.jsx)(Rn,{size:12}),` `,(0,A.jsx)(`span`,{className:`truncate`,children:e.email})]}),e.currentPos&&(0,A.jsxs)(`p`,{className:`text-gray-500 text-xs mt-1 truncate`,children:[`Current: `,e.currentPos]})]})]},e.name))}),(0,A.jsx)(j,{className:`space-y-2 mb-8`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-800`,children:`Alumni`})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`,children:Fr.alumni.map((e,t)=>(0,A.jsxs)(j,{delay:t*20,className:`glass-panel rounded-xl p-4 border border-gray-200/70 flex items-center gap-4 opacity-95 shadow-sm`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.name,className:`w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm grayscale`}),(0,A.jsxs)(`div`,{children:[(0,A.jsx)(`h3`,{className:`font-bold text-gray-800`,children:e.name}),(0,A.jsx)(`p`,{className:`text-gray-600 text-sm`,children:e.degree}),e.email&&(0,A.jsxs)(`a`,{href:`mailto:${e.email}`,className:`text-gray-500 text-xs flex items-center gap-1 mt-1 hover:text-primary`,children:[(0,A.jsx)(Rn,{size:12}),` `,(0,A.jsx)(`span`,{className:`truncate`,children:e.email})]}),e.currentPos&&(0,A.jsxs)(`p`,{className:`text-gray-500 text-xs mt-1`,children:[`Current: `,e.currentPos]})]})]},`${e.name}-${e.currentPos}`))})]}),Lr=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6 space-y-8`,children:[(0,A.jsx)(`div`,{className:`text-center space-y-3`}),(0,A.jsxs)(`div`,{className:`grid md:grid-cols-2 gap-4 lg:gap-6`,children:[(0,A.jsx)(j,{className:`glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform`,variant:`slide-left`,children:(0,A.jsxs)(`div`,{className:`p-6 md:p-7 space-y-4`,children:[(0,A.jsxs)(`div`,{className:`flex items-center justify-between`,children:[(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900`,children:`연구 개요`}),(0,A.jsx)(`span`,{className:`text-xs px-3 py-1 rounded-full bg-blue-100 text-primary font-semibold`,children:`KOR`})]}),(0,A.jsx)(`div`,{className:`space-y-4 text-gray-700 leading-relaxed text-justify`,children:_r.intro.ko.map(e=>(0,A.jsx)(`p`,{children:e},e))})]})}),(0,A.jsx)(j,{className:`glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform`,delay:40,variant:`slide-right`,children:(0,A.jsxs)(`div`,{className:`p-6 md:p-7 space-y-4`,children:[(0,A.jsxs)(`div`,{className:`flex items-center justify-between`,children:[(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900`,children:`Research Overview`}),(0,A.jsx)(`span`,{className:`text-xs px-3 py-1 rounded-full bg-indigo-100 text-primary font-semibold`,children:`ENG`})]}),(0,A.jsx)(`div`,{className:`space-y-4 text-gray-700 leading-relaxed text-justify`,children:_r.intro.en.map(e=>(0,A.jsx)(`p`,{children:e},e))})]})})]}),(0,A.jsxs)(`div`,{className:`space-y-10`,children:[(0,A.jsx)(`h3`,{className:`text-2xl font-bold text-center text-gray-900`,children:`Key Methodologies`}),_r.highlights.map((e,t)=>{let n=t%2==0?`md:rounded-l-2xl md:rounded-r-none`:`md:rounded-r-2xl md:rounded-l-none`;return(0,A.jsxs)(j,{delay:t*45,className:`glass-panel group rounded-2xl overflow-hidden shadow-xl border border-gray/70 flex flex-col transition-transform ${t%2==0?`md:flex-row`:`md:flex-row-reverse`}`,children:[(0,A.jsx)(`div`,{className:`w-full md:w-1/2 min-h-[280px] md:min-h-[340px] overflow-hidden ${n}`,children:(0,A.jsx)(ir,{src:e.img,alt:e.title,className:`w-full h-full object-cover scale-110 rounded-2xl transition-transform duration-700`})}),(0,A.jsxs)(`div`,{className:`w-full md:w-1/2 p-8 space-y-4`,children:[(0,A.jsx)(`h3`,{className:`text-2xl font-bold text-primary`,children:e.title}),(0,A.jsx)(`p`,{className:`text-gray-800 leading-relaxed text-lg font-semibold`,children:e.desc}),(0,A.jsx)(`p`,{className:`text-gray-600 text-sm leading-relaxed bg-blue-50/80 p-4 rounded-xl border border-blue-100`,children:e.detail})]})]},e.slug)})]})]}),Rr=`---
+`,Nr=(e,t)=>Object.entries(e).map(([e,n])=>{let{data:r}=Wn(n);return t(r,e.split(`/`).pop()?.replace(`.md`,``)??e)}).sort((e,t)=>e.order-t.order||e.name.localeCompare(t.name)),Pr={"../content/members/current/choi-hyunil.md":Er,"../content/members/current/jaehoon-jeong.md":Dr,"../content/members/current/jooeun-park.md":Or,"../content/members/current/wonwoo-shin.md":kr},Fr={"../content/members/alumni/seungjoo-choi.md":Ar,"../content/members/alumni/yoojin-hwang.md":jr,"../content/members/alumni/youngsoo-lim.md":Mr};const Ir={current:Nr(Pr,(e,t)=>({name:e.name??t,order:Number.isFinite(Number(e.order))?Number(e.order):1/0,degree:e.degree??e.role??``,email:e.email??``,currentPos:e.currentPos??``,img:Kn(e.img)})),alumni:Nr(Fr,(e,t)=>({name:e.name??t,order:Number.isFinite(Number(e.order))?Number(e.order):1/0,degree:e.degree??e.role??``,email:e.email??``,currentPos:e.currentPos??``,img:Kn(e.img)}))};var Lr=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6`,children:[(0,A.jsx)(j,{className:`space-y-3 mb-8`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-primary`,children:`Current Members`})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16`,children:Ir.current.map((e,t)=>(0,A.jsxs)(j,{delay:t*25,className:`glass-panel rounded-xl p-4 border border-gray-200/80 flex items-center gap-4 hover:-translate-y-1 transition transform shadow-md`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.name,className:`w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm`}),(0,A.jsxs)(`div`,{className:`min-w-0`,children:[(0,A.jsx)(`h3`,{className:`font-bold text-gray-800 truncate`,children:e.name}),(0,A.jsx)(`p`,{className:`text-primary font-medium text-sm truncate`,children:e.degree}),e.email&&(0,A.jsxs)(`a`,{href:`mailto:${e.email}`,className:`text-gray-500 text-xs flex items-center gap-1 mt-1 truncate hover:text-primary`,children:[(0,A.jsx)(Rn,{size:12}),` `,(0,A.jsx)(`span`,{className:`truncate`,children:e.email})]}),e.currentPos&&(0,A.jsxs)(`p`,{className:`text-gray-500 text-xs mt-1 truncate`,children:[`Current: `,e.currentPos]})]})]},e.name))}),(0,A.jsx)(j,{className:`space-y-2 mb-8`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-800`,children:`Alumni`})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`,children:Ir.alumni.map((e,t)=>(0,A.jsxs)(j,{delay:t*20,className:`glass-panel rounded-xl p-4 border border-gray-200/70 flex items-center gap-4 opacity-95 shadow-sm`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.name,className:`w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm grayscale`}),(0,A.jsxs)(`div`,{children:[(0,A.jsx)(`h3`,{className:`font-bold text-gray-800`,children:e.name}),(0,A.jsx)(`p`,{className:`text-gray-600 text-sm`,children:e.degree}),e.email&&(0,A.jsxs)(`a`,{href:`mailto:${e.email}`,className:`text-gray-500 text-xs flex items-center gap-1 mt-1 hover:text-primary`,children:[(0,A.jsx)(Rn,{size:12}),` `,(0,A.jsx)(`span`,{className:`truncate`,children:e.email})]}),e.currentPos&&(0,A.jsxs)(`p`,{className:`text-gray-500 text-xs mt-1`,children:[`Current: `,e.currentPos]})]})]},`${e.name}-${e.currentPos}`))})]}),Rr=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6 space-y-8`,children:[(0,A.jsx)(`div`,{className:`text-center space-y-3`}),(0,A.jsxs)(`div`,{className:`grid md:grid-cols-2 gap-4 lg:gap-6`,children:[(0,A.jsx)(j,{className:`glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform`,variant:`slide-left`,children:(0,A.jsxs)(`div`,{className:`p-6 md:p-7 space-y-4`,children:[(0,A.jsxs)(`div`,{className:`flex items-center justify-between`,children:[(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900`,children:`연구 개요`}),(0,A.jsx)(`span`,{className:`text-xs px-3 py-1 rounded-full bg-blue-100 text-primary font-semibold`,children:`KOR`})]}),(0,A.jsx)(`div`,{className:`space-y-4 text-gray-700 leading-relaxed text-justify`,children:_r.intro.ko.map(e=>(0,A.jsx)(`p`,{children:e},e))})]})}),(0,A.jsx)(j,{className:`glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform`,delay:40,variant:`slide-right`,children:(0,A.jsxs)(`div`,{className:`p-6 md:p-7 space-y-4`,children:[(0,A.jsxs)(`div`,{className:`flex items-center justify-between`,children:[(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900`,children:`Research Overview`}),(0,A.jsx)(`span`,{className:`text-xs px-3 py-1 rounded-full bg-indigo-100 text-primary font-semibold`,children:`ENG`})]}),(0,A.jsx)(`div`,{className:`space-y-4 text-gray-700 leading-relaxed text-justify`,children:_r.intro.en.map(e=>(0,A.jsx)(`p`,{children:e},e))})]})})]}),(0,A.jsxs)(`div`,{className:`space-y-10`,children:[(0,A.jsx)(`h3`,{className:`text-2xl font-bold text-center text-gray-900`,children:`Key Methodologies`}),_r.highlights.map((e,t)=>{let n=t%2==0?`md:rounded-l-2xl md:rounded-r-none`:`md:rounded-r-2xl md:rounded-l-none`;return(0,A.jsxs)(j,{delay:t*45,className:`glass-panel group rounded-2xl overflow-hidden shadow-xl border border-gray/70 flex flex-col transition-transform ${t%2==0?`md:flex-row`:`md:flex-row-reverse`}`,children:[(0,A.jsx)(`div`,{className:`w-full md:w-1/2 min-h-[280px] md:min-h-[340px] overflow-hidden ${n}`,children:(0,A.jsx)(ir,{src:e.img,alt:e.title,className:`w-full h-full object-cover scale-110 rounded-2xl transition-transform duration-700`})}),(0,A.jsxs)(`div`,{className:`w-full md:w-1/2 p-8 space-y-4`,children:[(0,A.jsx)(`h3`,{className:`text-2xl font-bold text-primary`,children:e.title}),(0,A.jsx)(`p`,{className:`text-gray-800 leading-relaxed text-lg font-semibold`,children:e.desc}),(0,A.jsx)(`p`,{className:`text-gray-600 text-sm leading-relaxed bg-blue-50/80 p-4 rounded-xl border border-blue-100`,children:e.detail})]})]},e.slug)})]})]}),zr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -247,7 +261,7 @@ items:
   - text: "\\"Femtosecond X-ray Absorption Spectroscopy at a Hard X-ray Free Electron Laser: Application to Spin Crossover Dynamics\\", JOURNAL OF PHYSICAL CHEMISTRY A, 117(4), 735-740 (2013)."
     doi: "10.1021/jp312559h"
 ---
-`,zr=`---
+`,Br=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -270,7 +284,7 @@ items:
   - text: "\\"Density functional and multireference ab initio study of the ground and excited states of Ru2\\", CHEMICAL PHYSICS LETTERS, 592, 24-29 (2014)."
     doi: "10.1016/j.cplett.2013.12.002"
 ---
-`,Br=`---
+`,Vr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -307,7 +321,7 @@ items:
   - text: "\\"Direct observation of bond formation in solution with femtosecond X-ray scattering\\", NATURE, 518(7539), 385-389 (2015)."
     doi: "10.1038/nature14163"
 ---
-`,Vr=`---
+`,Hr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -332,7 +346,7 @@ items:
   - text: "\\"Novel spherical TiO2 aggregates with diameter of 100 nm for efficient mesoscopic perovskite solar cells\\", NANO ENERGY, 20, 272-282 (2016)."
     doi: "10.1016/j.nanoen.2015.12.031"
 ---
-`,Hr=`---
+`,Ur=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -359,7 +373,7 @@ items:
   - text: "\\"Triphenylamine-based organic sensitizers with pi-spacer structural engineering for dye-sensitized solar cells: Synthesis, theoretical calculations, molecular spectroscopy and structure-property-performance relationships\\", DYES AND PIGMENTS, 136, 496-504 (2017)."
     doi: "10.1016/j.dyepig.2016.09.007"
 ---
-`,Ur=`---
+`,Wr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -374,7 +388,7 @@ items:
   - text: "\\"Silver bismuth iodides in various compositions as potential Pb-free light absorbers for hybrid solar cells\\", SUSTAINABLE ENERGY & FUELS, 2(1), 294-302 (2018)."
     doi: "10.1039/c7se00477j"
 ---
-`,Wr=`---
+`,Gr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -397,7 +411,7 @@ items:
   - text: "\\"Correction to 'Direct Observation of a Transiently Formed Isomer During Iodoform Photolysis in Solution by Time-Resolved X-ray Liquidography'\\", JOURNAL OF PHYSICAL CHEMISTRY LETTERS, 10(3), 500-500 (2019)."
     doi: "10.1021/acs.jpclett.9b00105"
 ---
-`,Gr=`---
+`,Kr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -416,7 +430,7 @@ items:
   - text: "\\"Dramatic Change of Morphological, Photophysical, and Photocatalytic H-2 Evolution Properties of C3N4 Materials by the Removal of Carbon Impurities\\", ACS APPLIED ENERGY MATERIALS, 3(5), 4812-4820 (2020)."
     doi: "10.1021/acsaem.0c00419"
 ---
-`,Kr=`---
+`,qr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -441,7 +455,7 @@ items:
   - text: "\\"Remarkable variation of visible light photocatalytic activities of MiSn(0.9)Sb(0.1)O(2)/TiO2 (M=Au, Ag, Pt) heterostructures depending on the loaded metals\\", CHEMOSPHERE, 265 (2021)."
     doi: "10.1016/j.chemosphere.2020.129160"
 ---
-`,qr=`---
+`,Jr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -462,7 +476,7 @@ items:
   - text: "\\"Boosting antioxidation efficiency of nonstoichiometric CeOx nanoparticles via surface passivation toward robust polymer electrolyte membrane fuel cells\\", CHEMICAL ENGINEERING JOURNAL, 432 (2022)."
     doi: "10.1016/j.cej.2021.134419"
 ---
-`,Jr=`---
+`,Yr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -479,7 +493,7 @@ items:
   - text: "\\"Extracting Kinetics and Thermodynamics of Molecules without Heavy Atoms via Time-Resolved Solvent Scattering Signals\\", JOURNAL OF PHYSICAL CHEMISTRY LETTERS, 14(13), 3103-3110 (2023)."
     doi: "10.1021/acs.jpclett.3c00041"
 ---
-`,Yr=`---
+`,Xr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -492,7 +506,7 @@ items:
   - text: "\\"Dynamic three-dimensional structures of a metal-organic framework captured with femtosecond serial crystallography\\", NATURE CHEMISTRY, 16(5), 693-699 (2024)."
     doi: "10.1038/s41557-024-01460-w"
 ---
-`,Xr=`---
+`,Zr=`---
 # 작성 예시:
 # year: 2025
 # items:
@@ -506,8 +520,8 @@ items:
   - text: "\\"Ultrafast structural dynamics of carbon-carbon single-bond rotation in transient radical species at non-equilibrium\\", NATURE COMMUNICATIONS, 16(1), 1969 (2025)."
     doi: 10.1038/s41467-025-57279-7
 ---
-`,Zr={"../content/publications/2013.md":Rr,"../content/publications/2014.md":zr,"../content/publications/2015.md":Br,"../content/publications/2016.md":Vr,"../content/publications/2017.md":Hr,"../content/publications/2018.md":Ur,"../content/publications/2019.md":Wr,"../content/publications/2020.md":Gr,"../content/publications/2021.md":Kr,"../content/publications/2022.md":qr,"../content/publications/2023.md":Jr,"../content/publications/2024.md":Yr,"../content/publications/2025.md":Xr},Qr=e=>{let t=e.match(/^---\s*\n([\s\S]*?)\n---/);if(!t)return{year:0,items:[]};let n=t[1].split(`
-`),r=0,i=[],a=null,o=null,s=()=>{a&&i.push({text:a.text||``,doi:a.doi||``}),a=null,o=null},c=(e=``)=>e.replace(/^"/,``).replace(/"$/,``).replace(/\\"/g,`"`);for(let e of n){let t=e.trim();if(!(!t||t.startsWith(`#`))){if(t.startsWith(`year:`)){r=Number(t.replace(`year:`,``).trim())||0;continue}if(t.startsWith(`items:`)){s();continue}if(t.startsWith(`- `)){s(),a={text:``,doi:``};let e=t.match(/text:\s*(.+)/);e&&(a.text=c(e[1].trim()),o=`text`);let n=t.match(/doi:\s*(.+)/);n&&(a.doi=c(n[1].trim()),o=`doi`);continue}a&&(t.startsWith(`text:`)?(a.text=c(t.replace(`text:`,``).trim()),o=`text`):t.startsWith(`doi:`)?(a.doi=c(t.replace(`doi:`,``).trim()),o=`doi`):o===`text`&&t&&(a.text=`${a.text} ${c(t)}`.trim()))}}return s(),{year:r,items:i}};const $r=Object.entries(Zr).map(([,e],t)=>({...Qr(e),sourceOrder:t})).sort((e,t)=>e.year===t.year?e.sourceOrder-t.sourceOrder:t.year-e.year).flatMap(({year:e,items:t})=>t.map((t,n)=>({year:e,text:t.text,doi:t.doi,slug:`${e}-${String(n+1).padStart(2,`0`)}`})));var ei=()=>(0,A.jsxs)(`div`,{className:`max-w-6xl mx-auto py-12 px-6 space-y-6`,children:[(0,A.jsx)(j,{className:`space-y-3`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Publications`})}),(0,A.jsx)(`div`,{className:`glass-panel rounded-2xl shadow-xl border border-gray/70 overflow-hidden`,children:$r.map((e,t)=>{let n=!!e.doi,r=`https://scholar.google.com/scholar?q=${encodeURIComponent(e.text)}`,i=n?`https://doi.org/${e.doi}`:``;return(0,A.jsx)(j,{className:`relative p-6 ${t===$r.length-1?``:`border-b border-gray/60`} bg-white/70`,children:(0,A.jsxs)(`div`,{className:`flex gap-4 items-start`,children:[(0,A.jsx)(`span`,{className:`bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0 shadow-sm`,children:e.year}),(0,A.jsxs)(`div`,{className:`flex-grow`,children:[(0,A.jsx)(`p`,{className:`text-gray-800 leading-relaxed font-medium`,children:e.text}),(0,A.jsxs)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:[!n&&(0,A.jsxs)(`a`,{href:r,target:`_blank`,rel:`noopener noreferrer`,className:`text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded hover:bg-gray-200 inline-flex items-center gap-1`,children:[`Google Scholar `,(0,A.jsx)(In,{size:10})]}),n&&(0,A.jsxs)(`a`,{href:i,target:`_blank`,rel:`noopener noreferrer`,className:`text-xs bg-blue-100 text-primary px-2 py-1 rounded hover:bg-blue-200 inline-flex items-center gap-1`,children:[`DOI Link `,(0,A.jsx)(In,{size:10})]})]})]})]})},e.slug)})})]}),ti=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6`,children:[(0,A.jsx)(j,{className:`flex items-center justify-between mb-6`,children:(0,A.jsx)(`div`,{className:`space-y-2`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Gallery`})})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4`,children:xr.map((e,t)=>(0,A.jsxs)(j,{delay:t*20,className:`group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.title,className:`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110`}),(0,A.jsx)(`div`,{className:`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4`,children:(0,A.jsx)(`span`,{className:`text-white font-medium text-lg`,children:e.title})})]},e.slug))})]}),ni=`---
+`,Qr={"../content/publications/2013.md":zr,"../content/publications/2014.md":Br,"../content/publications/2015.md":Vr,"../content/publications/2016.md":Hr,"../content/publications/2017.md":Ur,"../content/publications/2018.md":Wr,"../content/publications/2019.md":Gr,"../content/publications/2020.md":Kr,"../content/publications/2021.md":qr,"../content/publications/2022.md":Jr,"../content/publications/2023.md":Yr,"../content/publications/2024.md":Xr,"../content/publications/2025.md":Zr},$r=e=>{let t=e.match(/^---\s*\n([\s\S]*?)\n---/);if(!t)return{year:0,items:[]};let n=t[1].split(`
+`),r=0,i=[],a=null,o=null,s=()=>{a&&i.push({text:a.text||``,doi:a.doi||``}),a=null,o=null},c=(e=``)=>e.replace(/^"/,``).replace(/"$/,``).replace(/\\"/g,`"`);for(let e of n){let t=e.trim();if(!(!t||t.startsWith(`#`))){if(t.startsWith(`year:`)){r=Number(t.replace(`year:`,``).trim())||0;continue}if(t.startsWith(`items:`)){s();continue}if(t.startsWith(`- `)){s(),a={text:``,doi:``};let e=t.match(/text:\s*(.+)/);e&&(a.text=c(e[1].trim()),o=`text`);let n=t.match(/doi:\s*(.+)/);n&&(a.doi=c(n[1].trim()),o=`doi`);continue}a&&(t.startsWith(`text:`)?(a.text=c(t.replace(`text:`,``).trim()),o=`text`):t.startsWith(`doi:`)?(a.doi=c(t.replace(`doi:`,``).trim()),o=`doi`):o===`text`&&t&&(a.text=`${a.text} ${c(t)}`.trim()))}}return s(),{year:r,items:i}};const ei=Object.entries(Qr).map(([,e],t)=>({...$r(e),sourceOrder:t})).sort((e,t)=>e.year===t.year?e.sourceOrder-t.sourceOrder:t.year-e.year).flatMap(({year:e,items:t})=>t.map((t,n)=>({year:e,text:t.text,doi:t.doi,slug:`${e}-${String(n+1).padStart(2,`0`)}`})));var ti=()=>(0,A.jsxs)(`div`,{className:`max-w-6xl mx-auto py-12 px-6 space-y-6`,children:[(0,A.jsx)(j,{className:`space-y-3`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Publications`})}),(0,A.jsx)(`div`,{className:`glass-panel rounded-2xl shadow-xl border border-gray/70 overflow-hidden`,children:ei.map((e,t)=>{let n=!!e.doi,r=`https://scholar.google.com/scholar?q=${encodeURIComponent(e.text)}`,i=n?`https://doi.org/${e.doi}`:``;return(0,A.jsx)(j,{className:`relative p-6 ${t===ei.length-1?``:`border-b border-gray/60`} bg-white/70`,children:(0,A.jsxs)(`div`,{className:`flex gap-4 items-start`,children:[(0,A.jsx)(`span`,{className:`bg-primary text-white text-xs font-bold px-2 py-1 rounded mt-1 shrink-0 shadow-sm`,children:e.year}),(0,A.jsxs)(`div`,{className:`flex-grow`,children:[(0,A.jsx)(`p`,{className:`text-gray-800 leading-relaxed font-medium`,children:e.text}),(0,A.jsxs)(`div`,{className:`mt-3 flex flex-wrap gap-2`,children:[!n&&(0,A.jsxs)(`a`,{href:r,target:`_blank`,rel:`noopener noreferrer`,className:`text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded hover:bg-gray-200 inline-flex items-center gap-1`,children:[`Google Scholar `,(0,A.jsx)(In,{size:10})]}),n&&(0,A.jsxs)(`a`,{href:i,target:`_blank`,rel:`noopener noreferrer`,className:`text-xs bg-blue-100 text-primary px-2 py-1 rounded hover:bg-blue-200 inline-flex items-center gap-1`,children:[`DOI Link `,(0,A.jsx)(In,{size:10})]})]})]})]})},e.slug)})})]}),ni=()=>(0,A.jsxs)(`div`,{className:`max-w-7xl mx-auto py-12 px-6`,children:[(0,A.jsx)(j,{className:`flex items-center justify-between mb-6`,children:(0,A.jsx)(`div`,{className:`space-y-2`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Gallery`})})}),(0,A.jsx)(`div`,{className:`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4`,children:xr.map((e,t)=>(0,A.jsxs)(j,{delay:t*20,className:`group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel`,children:[(0,A.jsx)(ir,{src:e.img,alt:e.title,className:`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110`}),(0,A.jsx)(`div`,{className:`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4`,children:(0,A.jsx)(`span`,{className:`text-white font-medium text-lg`,children:e.title})})]},e.slug))})]}),ri=`---
 # 작성 예시:
 # date: YYYY-MM-DD
 # title: "제목"
@@ -519,7 +533,7 @@ image: https://placehold.co/96x96?text=Homepage
 ---
 우리 연구실의 새로운 홈페이지가 개장했습니다.
 감사합니다.
-`,ri=`---
+`,ii=`---
 # 작성 예시:
 # date: YYYY-MM-DD
 # title: "제목"
@@ -531,4 +545,4 @@ image: /img/251125_Lunch.jpg
 preserveLineBreaks: false
 ---
 교수님과 함께하는 점심식사가 있었습니다.
-`,ii={"../content/news/2025-11-21-new-homepage.md":ni,"../content/news/2025-11-25-lunch.md":ri};const ai=Object.entries(ii).map(([e,t])=>{let{data:n,content:r}=Wn(t),i=e.split(`/`).pop()?.replace(`.md`,``)??e,a=Kn(n.image);return{date:n.date??``,title:n.title??i,content:r,slug:i,image:a||void 0}}).sort((e,t)=>Gn(t.date)-Gn(e.date));var oi=`https://placehold.co/96x96?text=News`,si=()=>(0,A.jsxs)(`div`,{className:`max-w-5xl mx-auto py-12 px-6 space-y-6`,children:[(0,A.jsx)(j,{className:`space-y-2`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Lab News`})}),(0,A.jsx)(`div`,{className:`space-y-6`,children:ai.map((e,t)=>(0,A.jsx)(j,{delay:t*30,className:`glass-panel p-6 rounded-2xl shadow-lg border border-white/70 transition-transform duration-200 hover:scale-[1.01] hover:shadow-xl`,children:(0,A.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,A.jsxs)(`div`,{className:`flex-1`,children:[(0,A.jsx)(`div`,{className:`text-sm text-primary font-bold mb-2`,children:e.date}),(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900 mb-3`,children:e.title}),(0,A.jsx)(`p`,{className:`text-gray-700 whitespace-pre-line`,children:e.content})]}),(0,A.jsx)(ir,{src:e.image||oi,fallbackSrc:oi,alt:`${e.title} thumbnail`,className:`w-20 h-20 rounded-full object-cover border border-gray-100 shadow-sm flex-shrink-0`})]})},e.slug))})]});function ci(){return(0,A.jsx)(A.Fragment,{children:(0,A.jsx)(sn,{children:(0,A.jsx)(sr,{children:(0,A.jsxs)(Ct,{children:[(0,A.jsx)(xt,{path:`/`,element:(0,A.jsx)(Cr,{})}),(0,A.jsx)(xt,{path:`/professor`,element:(0,A.jsx)(Tr,{})}),(0,A.jsx)(xt,{path:`/members`,element:(0,A.jsx)(Ir,{})}),(0,A.jsx)(xt,{path:`/research`,element:(0,A.jsx)(Lr,{})}),(0,A.jsx)(xt,{path:`/publications`,element:(0,A.jsx)(ei,{})}),(0,A.jsx)(xt,{path:`/gallery`,element:(0,A.jsx)(ti,{})}),(0,A.jsx)(xt,{path:`/news`,element:(0,A.jsx)(si,{})}),(0,A.jsx)(xt,{path:`*`,element:(0,A.jsx)(bt,{to:`/`,replace:!0})})]})})})})}var li=ci,ui=document.getElementById(`root`);if(!ui)throw Error(`Root element with id "root" not found`);Un.createRoot(ui).render((0,A.jsx)(x.StrictMode,{children:(0,A.jsx)(li,{})}));
+`,ai={"../content/news/2025-11-21-new-homepage.md":ri,"../content/news/2025-11-25-lunch.md":ii};const oi=Object.entries(ai).map(([e,t])=>{let{data:n,content:r}=Wn(t),i=e.split(`/`).pop()?.replace(`.md`,``)??e,a=Kn(n.image);return{date:n.date??``,title:n.title??i,content:r,slug:i,image:a||void 0}}).sort((e,t)=>Gn(t.date)-Gn(e.date));var si=`https://placehold.co/96x96?text=News`,ci=()=>(0,A.jsxs)(`div`,{className:`max-w-5xl mx-auto py-12 px-6 space-y-6`,children:[(0,A.jsx)(j,{className:`space-y-2`,children:(0,A.jsx)(`h2`,{className:`text-3xl font-bold text-gray-900`,children:`Lab News`})}),(0,A.jsx)(`div`,{className:`space-y-6`,children:oi.map((e,t)=>(0,A.jsx)(j,{delay:t*30,className:`glass-panel p-6 rounded-2xl shadow-lg border border-white/70 transition-transform duration-200 hover:scale-[1.01] hover:shadow-xl`,children:(0,A.jsxs)(`div`,{className:`flex items-center gap-4`,children:[(0,A.jsxs)(`div`,{className:`flex-1`,children:[(0,A.jsx)(`div`,{className:`text-sm text-primary font-bold mb-2`,children:e.date}),(0,A.jsx)(`h3`,{className:`text-xl font-bold text-gray-900 mb-3`,children:e.title}),(0,A.jsx)(`p`,{className:`text-gray-700 whitespace-pre-line`,children:e.content})]}),(0,A.jsx)(ir,{src:e.image||si,fallbackSrc:si,alt:`${e.title} thumbnail`,className:`w-20 h-20 rounded-full object-cover border border-gray-100 shadow-sm flex-shrink-0`})]})},e.slug))})]});function li(){return(0,A.jsx)(A.Fragment,{children:(0,A.jsx)(sn,{children:(0,A.jsx)(sr,{children:(0,A.jsxs)(Ct,{children:[(0,A.jsx)(xt,{path:`/`,element:(0,A.jsx)(Cr,{})}),(0,A.jsx)(xt,{path:`/professor`,element:(0,A.jsx)(Tr,{})}),(0,A.jsx)(xt,{path:`/members`,element:(0,A.jsx)(Lr,{})}),(0,A.jsx)(xt,{path:`/research`,element:(0,A.jsx)(Rr,{})}),(0,A.jsx)(xt,{path:`/publications`,element:(0,A.jsx)(ti,{})}),(0,A.jsx)(xt,{path:`/gallery`,element:(0,A.jsx)(ni,{})}),(0,A.jsx)(xt,{path:`/news`,element:(0,A.jsx)(ci,{})}),(0,A.jsx)(xt,{path:`*`,element:(0,A.jsx)(bt,{to:`/`,replace:!0})})]})})})})}var ui=li,di=document.getElementById(`root`);if(!di)throw Error(`Root element with id "root" not found`);Un.createRoot(di).render((0,A.jsx)(x.StrictMode,{children:(0,A.jsx)(ui,{})}));
