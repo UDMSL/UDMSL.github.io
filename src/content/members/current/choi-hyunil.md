@@ -6,7 +6,7 @@
 # currentPos: "졸업 후 근무지(졸업생용)"
 # img: "/img/photo.jpg" 또는 "https://..."
 name: Hyunil Choi
-order: 3
+order: 4
 degree: Undergraduate
 email: kmrwin1@naver.com
 currentPos: ""
