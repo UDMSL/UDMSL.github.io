@@ -1,0 +1,12 @@
+{
+  "defaultServer": "ntp.kriss.re.kr",
+  "fallbackServer": "time.nist.gov",
+  "servers": [
+    { "host": "ntp.kriss.re.kr", "label": "KRISS · 한국표준과학연구원" },
+    { "host": "time.asia.apple.com", "label": "Apple · Asia" },
+    { "host": "time.cloudflare.com", "label": "Cloudflare" },
+    { "host": "time.google.com", "label": "Google" },
+    { "host": "ntp.nict.jp", "label": "NICT · 일본" },
+    { "host": "time.nist.gov", "label": "NIST · 미국" }
+  ]
+}

@@ -2,6 +2,8 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { AlignLeft, AlignRight, Expand, Minimize, Eye, EyeOff } from 'lucide-react'
 import { clockTime, minuteLightOpacity, secondOrbitAngle } from '../utils/clock'
 import './ExamClock.css'
+import { useNetworkTime } from '../hooks/useNetworkTime'
+import { fitMemoFontSize } from '../utils/memo'
 
 const STORAGE_KEY = 'udms-exam-clock-preview-v1'
 type Settings = { note: string; side: 'left' | 'right'; use24Hour: boolean; animateSeconds: boolean }
@@ -19,7 +21,7 @@ const readSettings = (): Settings => {
   } catch { return defaults }
 }
 
-const LightHourClock = ({ use24Hour, animateSeconds }: { use24Hour: boolean; animateSeconds: boolean }) => {
+const LightHourClock = ({ use24Hour, animateSeconds, now }: { use24Hour: boolean; animateSeconds: boolean; now: () => number | null }) => {
   const lightsRef = useRef<SVGGElement>(null)
   const hoursRef = useRef<SVGGElement>(null)
   const glowId = useId()
@@ -36,11 +38,23 @@ const LightHourClock = ({ use24Hour, animateSeconds }: { use24Hour: boolean; ani
     const hours = hoursRef.current?.querySelectorAll('text')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = () => {
-      const now = new Date()
-      const time = clockTime(now, use24Hour)
+      const serverNow = now()
+      if (serverNow === null) {
+        if (digitalRef.current) digitalRef.current.textContent = '--:--:--'
+        previousDigital = ''
+        previousHour = -1
+        lights?.forEach((light) => light.setAttribute('opacity', '0'))
+        hours?.forEach((hour) => hour.setAttribute('data-active', 'false'))
+        secondRef.current?.setAttribute('visibility', 'hidden')
+        frame = requestAnimationFrame(update)
+        return
+      }
+      const currentDate = new Date(serverNow)
+      const time = clockTime(currentDate, use24Hour)
+      secondRef.current?.setAttribute('visibility', 'visible')
       // The explicit user control takes precedence over the system motion setting.
-      secondRef.current?.setAttribute('transform', `rotate(${secondOrbitAngle(now, !animateSeconds)} 200 200)`)
-      const sway = reducedMotion.matches ? 0 : Math.sin(now.getTime() * Math.PI * 2 / 9000) * 0.08
+      secondRef.current?.setAttribute('transform', `rotate(${secondOrbitAngle(currentDate, !animateSeconds)} 200 200)`)
+      const sway = reducedMotion.matches ? 0 : Math.sin(serverNow * Math.PI * 2 / 9000) * 0.08
       lights?.forEach((light, index) => {
         light.setAttribute('opacity', minuteLightOpacity(time.minuteProgress, index, sway).toFixed(4))
       })
@@ -57,7 +71,7 @@ const LightHourClock = ({ use24Hour, animateSeconds }: { use24Hour: boolean; ani
     }
     update()
     return () => cancelAnimationFrame(frame)
-  }, [use24Hour, animateSeconds])
+  }, [use24Hour, animateSeconds, now])
 
   return (
     <div className="exam-clock-face" role="img" aria-label="현재 시의 숫자가 빛나고 분의 빛이 시계 방향으로 채워지는 시계. 바깥쪽 작은 원이 매초 이동하며 중앙에 시·분·초를 표시합니다.">
@@ -107,12 +121,12 @@ const LightHourClock = ({ use24Hour, animateSeconds }: { use24Hour: boolean; ani
 
 const ExamClock = ({ preview = false }: { preview?: boolean }) => {
   const [settings, setSettings] = useState(readSettings)
+  const networkTime = useNetworkTime()
   const [focused, setFocused] = useState(false)
   const [fullscreen, setFullscreen] = useState(false)
   const [notice, setNotice] = useState('')
   const noteRef = useRef<HTMLTextAreaElement>(null)
   const noteAreaRef = useRef<HTMLDivElement>(null)
-  const measureRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -124,37 +138,39 @@ const ExamClock = ({ preview = false }: { preview?: boolean }) => {
 
   useLayoutEffect(() => {
     const note = noteRef.current
-    const measure = measureRef.current
     const area = noteAreaRef.current
-    if (!note || !measure || !area) return
+    const context = document.createElement('canvas').getContext('2d')
+    if (!note || !area || !context) return
+    let cancelled = false
     let lastDimensions = ''
     const fit = () => {
       // Measure a fixed editor area, never the textarea whose font we change.
       // This breaks the resize -> font -> scrollbar -> resize feedback loop.
-      const width = area.clientWidth - 4
-      const height = area.clientHeight - 4
-      if (width <= 0 || height <= 0) return
+      const width = area.clientWidth - 8
+      const height = area.clientHeight - 8
+      if (cancelled || width <= 0 || height <= 0) return
       const dimensions = `${width}:${height}`
       if (dimensions === lastDimensions) return
       lastDimensions = dimensions
-      measure.style.width = `${width}px`
-      const text = settings.note || note.placeholder
-      measure.textContent = text.endsWith('\n') ? text + '\u200b' : text
-      let low = 1
-      let high = Math.min(160, height / 1.48)
-      for (let i = 0; i < 12; i++) {
-        const size = (low + high) / 2
-        measure.style.fontSize = `${size}px`
-        if (measure.scrollHeight <= height && measure.scrollWidth <= width) low = size
-        else high = size
-      }
-      const fontSize = `${Math.floor(low)}px`
+      const style = getComputedStyle(note)
+      context.font = `${style.fontWeight} 100px ${style.fontFamily}`
+      const fontSize = `${fitMemoFontSize(settings.note || note.placeholder, width, height,
+        (line) => context.measureText(line).width)}px`
       if (note.style.fontSize !== fontSize) note.style.fontSize = fontSize
+      note.scrollTop = 0
+      note.scrollLeft = 0
     }
+    const onFonts = () => { lastDimensions = ''; fit() }
     fit()
     const observer = new ResizeObserver(fit)
     observer.observe(area)
-    return () => observer.disconnect()
+    void document.fonts.ready.then(onFonts)
+    document.fonts.addEventListener('loadingdone', onFonts)
+    return () => {
+      cancelled = true
+      observer.disconnect()
+      document.fonts.removeEventListener('loadingdone', onFonts)
+    }
   }, [settings.note])
 
   useEffect(() => {
@@ -211,6 +227,8 @@ const ExamClock = ({ preview = false }: { preview?: boolean }) => {
       <header className="exam-clock-toolbar">
         <div className="exam-clock-brand"><span className="exam-clock-status" /><h1>시험 시계</h1>{preview && <span className="exam-clock-preview-label">PREVIEW</span>}</div>
         <div className="exam-clock-controls">
+          <span className="exam-clock-source">TimeAPI.io</span>
+          <button className="exam-clock-motion-button" onClick={networkTime.resync} disabled={networkTime.state.status === 'syncing'}>재동기화</button>
           <div className="exam-clock-toggle" role="group" aria-label="디지털 시계 시간 형식">
             <button aria-pressed={!settings.use24Hour} onClick={() => setSettings({ ...settings, use24Hour: false })}>12H</button>
             <button aria-pressed={settings.use24Hour} onClick={() => setSettings({ ...settings, use24Hour: true })}>24H</button>
@@ -226,17 +244,21 @@ const ExamClock = ({ preview = false }: { preview?: boolean }) => {
       </header>
       {focused && !fullscreen && <button className="exam-clock-restore" onClick={() => setFocused(false)} aria-label="설정 표시"><Eye size={18} /> 설정 표시</button>}
       <div className={`exam-clock-workspace clock-on-${settings.side}`}>
-        <section className="exam-clock-panel" aria-label="시계"><LightHourClock use24Hour={settings.use24Hour} animateSeconds={settings.animateSeconds} /></section>
+        <section className="exam-clock-panel" aria-label="시계"><LightHourClock use24Hour={settings.use24Hour} animateSeconds={settings.animateSeconds} now={networkTime.now} /></section>
         <section className="exam-clock-notes" aria-label="시험 안내 메모">
           <label htmlFor="exam-note" className="exam-clock-note-label">MEMO</label>
           <div ref={noteAreaRef} className="exam-clock-note-editor">
             <textarea id="exam-note" ref={noteRef} wrap="off" value={settings.note} onChange={(event) => setSettings({ ...settings, note: event.target.value })}
               placeholder={'시험 안내를\n입력하세요.'} spellCheck={false} aria-label="시험 안내 메모. 입력량에 따라 글자 크기가 자동 조절됩니다." />
           </div>
-          <div ref={measureRef} className="exam-clock-measure" aria-hidden="true" />
         </section>
       </div>
-      <footer className="exam-clock-footer"><span>기기 기준 현재 시각</span></footer>
+      <footer className="exam-clock-footer" aria-live="polite"><span>
+        {networkTime.state.status === 'syncing' ? 'TimeAPI.io 동기화 중…' :
+          networkTime.state.status === 'synced' ? `TimeAPI.io 기준 · 동기화 완료 · 왕복 ${Math.round(networkTime.state.roundTripMs || 0)} ms (정확도 수치 아님)` : networkTime.state.message}
+      </span></footer>
+      {(networkTime.state.status === 'error' || networkTime.state.status === 'holdover') &&
+        <div className="exam-clock-sync-warning" role="status">{networkTime.state.message}</div>}
       {notice && <div className="exam-clock-notice" role="status">{notice}<button onClick={() => setNotice('')} aria-label="알림 닫기">×</button></div>}
     </section>
   )

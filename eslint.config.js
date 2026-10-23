@@ -12,7 +12,7 @@ try {
   tsParser = undefined
 }
 
-const filePatterns = tsParser ? ['**/*.{js,jsx,ts,tsx}'] : ['**/*.{js,jsx}']
+const filePatterns = tsParser ? ['**/*.{js,mjs,jsx,ts,tsx}'] : ['**/*.{js,mjs,jsx}']
 const ignoredPatterns = tsParser ? [] : ['**/*.ts', '**/*.tsx']
 
 export default defineConfig([
@@ -44,5 +44,9 @@ export default defineConfig([
         },
       ],
     },
+  },
+  {
+    files: ['server/**/*.mjs', 'scripts/**/*.mjs'],
+    languageOptions: { globals: globals.node },
   },
 ])
