@@ -56,7 +56,7 @@ const Home = () => {
                 <p>
                   저희 연구실에서 수행 중인 연구들에 대하여 자세히 알고 싶으시면
                   <a
-                    href="http://www.google.com/url?q=http%3A%2F%2Fwww.researchgate.net%2Fprofile%2FJeongho_Kim%2F&sa=D&sntz=1&usg=AOvVaw1TKZIaOajKwuws6qkSurB-"
+                    href="https://www.researchgate.net/profile/Jeongho_Kim/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"
@@ -65,7 +65,7 @@ const Home = () => {
                   </a>
                   ,
                   <a
-                    href="http://scholar.google.com/citations?user=Frtw8W4AAAAJ"
+                    href="https://scholar.google.com/citations?user=Frtw8W4AAAAJ"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"
@@ -74,7 +74,7 @@ const Home = () => {
                   </a>
                   ,
                   <a
-                    href="http://www.google.com/url?q=http%3A%2F%2Forcid.org%2F0000-0003-4085-293X&sa=D&sntz=1&usg=AOvVaw3w29BCv3bGnrPatpU--ZfE"
+                    href="https://orcid.org/0000-0003-4085-293X"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"
@@ -107,7 +107,7 @@ const Home = () => {
                 <p>
                   For details of the research projects in our group, please check my research profile at
                   <a
-                    href="http://www.google.com/url?q=http%3A%2F%2Fwww.researchgate.net%2Fprofile%2FJeongho_Kim%2F&sa=D&sntz=1&usg=AOvVaw1TKZIaOajKwuws6qkSurB-"
+                    href="https://www.researchgate.net/profile/Jeongho_Kim/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"
@@ -116,7 +116,7 @@ const Home = () => {
                   </a>
                   ,
                   <a
-                    href="http://scholar.google.com/citations?user=Frtw8W4AAAAJ"
+                    href="https://scholar.google.com/citations?user=Frtw8W4AAAAJ"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"
@@ -125,7 +125,7 @@ const Home = () => {
                   </a>
                   , and
                   <a
-                    href="http://www.google.com/url?q=http%3A%2F%2Forcid.org%2F0000-0003-4085-293X&sa=D&sntz=1&usg=AOvVaw3w29BCv3bGnrPatpU--ZfE"
+                    href="https://orcid.org/0000-0003-4085-293X"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-secondary font-semibold hover:underline mx-1"

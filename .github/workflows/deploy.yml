@@ -1,6 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
+  pull_request:
   push:
     branches:
       - main  # main 브랜치에 코드가 올라오면 실행해라!
@@ -15,13 +16,23 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
       - name: Install and Build 🔧
+        # Lockfile keeps local and CI dependency versions aligned.
         run: |
-          npm install
+          npm ci
+          npm run lint
+          npm test
           npm run build
           # 깃허브 컴퓨터가 알아서 설치하고 빌드함
 
       - name: Deploy 🚀
+        if: github.event_name == 'push'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # 배포할 브랜치 이름

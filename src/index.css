@@ -38,11 +38,23 @@
 
 .reveal-visible {
     /* keep transforms pinned when fully visible */
-    opacity: var(--reveal-opacity, 1);
+    --reveal-opacity: 1;
+    opacity: 1;
     transform: translateY(0) scale(1);
+    will-change: auto;
+}
+
+:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
     .reveal {
         opacity: 1 !important;
         transform: none !important;

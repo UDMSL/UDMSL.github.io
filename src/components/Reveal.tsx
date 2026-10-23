@@ -24,12 +24,8 @@ const Reveal = <T extends ElementType = 'div'>({
     const node = ref.current
     if (!node) return
 
-    // Enter/exit thresholds tuned so fade-out starts slightly before the element fully leaves view
-    const enterRatio = 0.2
-    const exitRatio = 0.1
-
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       node.classList.add('reveal-visible')
       node.style.setProperty('--reveal-opacity', '1')
       return
@@ -38,24 +34,15 @@ const Reveal = <T extends ElementType = 'div'>({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const ratio = entry.intersectionRatio
-          const target = entry.target as HTMLElement
-          // Ease-out curve to shorten mid-transparency time (quadratic)
-          const normalized = Math.min(1, Math.max(0, ratio * 1.4))
-          const easedOpacity = 1 - Math.pow(1 - normalized, 2)
-          target.style.setProperty('--reveal-opacity', easedOpacity.toString())
-
-          // Fade in when sufficiently visible, fade out when mostly gone or fully out of view
-          if (ratio >= enterRatio) {
-            target.classList.add('reveal-visible')
-          } else if (ratio <= exitRatio || !entry.isIntersecting) {
-            target.classList.remove('reveal-visible')
-          }
+          // A tall section may never reach a percentage threshold on mobile.
+          // Reveal once on entry and keep content fully readable afterwards.
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('reveal-visible')
+          observer.unobserve(entry.target)
         })
       },
       {
-        threshold: Array.from({ length: 21 }, (_, i) => i * 0.05),
-        rootMargin: '-5% 0px -5% 0px',
+        threshold: 0,
       },
     )
 

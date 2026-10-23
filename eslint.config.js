@@ -16,7 +16,7 @@ const filePatterns = tsParser ? ['**/*.{js,jsx,ts,tsx}'] : ['**/*.{js,jsx}']
 const ignoredPatterns = tsParser ? [] : ['**/*.ts', '**/*.tsx']
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dist-clock-preview']),
   {
     files: filePatterns,
     ignores: ignoredPatterns,

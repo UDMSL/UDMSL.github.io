@@ -1,0 +1,87 @@
+.exam-clock-page,
+.exam-clock-page * { box-sizing: border-box; }
+.exam-clock-page {
+  --clock-bg: #050505;
+  min-height: 100svh;
+  height: 100dvh;
+  background: var(--clock-bg);
+  color: #f5f5f5;
+  font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(22px, 4vw, 80px);
+  -webkit-font-smoothing: antialiased;
+}
+.exam-clock-page button { font: inherit; cursor: pointer; }
+.exam-clock-layout { background: #050505; }
+.exam-clock-layout .exam-clock-page { height: calc(100dvh - 64px); min-height: calc(100svh - 64px); }
+.exam-clock-layout:has(.exam-clock-page.is-fullscreen) > nav { display: none; }
+.exam-clock-layout .exam-clock-page.is-fullscreen { height: 100dvh; min-height: 100svh; }
+.exam-clock-page button:focus-visible,
+.exam-clock-page textarea:focus-visible { outline: 2px solid #a7e8cd; outline-offset: 5px; }
+.exam-clock-toolbar {
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #202020;
+}
+.exam-clock-brand { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.exam-clock-brand h1 { margin: 0; font-size: 17px; font-weight: 500; letter-spacing: -.4px; }
+.exam-clock-status { width: 6px; height: 6px; background: #a7e8cd; border-radius: 50%; box-shadow: 0 0 12px #a7e8cd40; }
+.exam-clock-preview-label { font-size: 9px; letter-spacing: 1.5px; color: #8d8d8d; margin-left: 5px; border: 1px solid #303030; border-radius: 4px; padding: 5px 7px; }
+.exam-clock-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.exam-clock-motion-button { height: 42px; padding: 0 12px; background: #101010; border: 1px solid #252525; border-radius: 9px; color: #aaa; font-size: 11px !important; }
+.exam-clock-motion-button[aria-pressed='true'] { color: #fff; border-color: #555; }
+.exam-clock-toggle { display: flex; background: #101010; border: 1px solid #252525; border-radius: 9px; padding: 4px; gap: 3px; }
+.exam-clock-toggle button { border: 0; background: transparent; color: #858585; min-width: 39px; height: 32px; border-radius: 5px; font-size: 11px; font-weight: 600; display: grid; place-items: center; }
+.exam-clock-toggle button[aria-pressed='true'] { background: #2b2b2b; color: #f5f5f5; box-shadow: 0 1px 3px #0006; }
+.exam-clock-toggle button:hover { color: #fff; }
+.exam-clock-icon-button { display: grid; place-items: center; border: 1px solid #252525; border-radius: 9px; width: 42px; height: 42px; background: #101010; color: #a0a0a0; }
+.exam-clock-icon-button:hover { background: #242424; color: white; }
+.exam-clock-workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; gap: clamp(35px, 6vw, 120px); padding: 42px 0; }
+.exam-clock-panel { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 0; }
+.exam-clock-face { width: min(100%, calc(100dvh - 280px)); position: relative; aspect-ratio: 1; flex-shrink: 0; container-type: inline-size; }
+.exam-clock-face svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.exam-clock-hour-numbers text { fill: #888888; transition: fill 1.2s ease, filter 1.2s ease; }
+.exam-clock-hour-numbers text[data-active='true'] { fill: #ffffff; font-weight: 700; filter: drop-shadow(0 0 2px #ffffff66); }
+.exam-clock-digital { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 70%; }
+.exam-clock-period { position: absolute; bottom: calc(100% + 1.5cqw); left: 0; width: 100%; font-size: 2.5cqw; font-weight: 600; letter-spacing: 2px; color: #ffffff; }
+.exam-clock-time { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace; font-size: 12.4cqw; font-weight: 600; color: #ffffff; letter-spacing: -1px; font-variant-numeric: tabular-nums; white-space: nowrap; line-height: 1; }
+.exam-clock-second-orbit { filter: drop-shadow(0 0 2px #ffffff55); }
+.exam-clock-notes { position: relative; min-width: 0; min-height: 0; border-left: 1px solid #202020; padding-left: clamp(24px, 4vw, 72px); display: flex; flex-direction: column; gap: 28px; }
+.exam-clock-note-label { display: flex; gap: 16px; align-items: center; color: #a7e8cd; font-size: 10px; font-weight: 500; letter-spacing: 2px; padding-top: 10px; }
+.exam-clock-notes textarea,
+.exam-clock-measure { font-family: inherit; font-weight: 500; line-height: 1.48; letter-spacing: -.035em; white-space: pre; overflow-wrap: normal; word-break: normal; hyphens: none; padding: 0; border: 0; }
+.exam-clock-note-editor { flex: 1 1 0; min-height: 0; min-width: 0; position: relative; }
+.exam-clock-notes textarea { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; resize: none; background: transparent; color: #fff; border-radius: 0; caret-color: #a7e8cd; overflow: hidden; font-size: 40px; }
+.exam-clock-notes textarea::placeholder { color: #595959; }
+.exam-clock-notes textarea:focus { outline: none; }
+.exam-clock-notes textarea:focus-visible { outline: 1px solid #424242; outline-offset: 8px; }
+.exam-clock-measure { position: fixed; left: -100000px; top: 0; visibility: hidden; height: auto; pointer-events: none; }
+.clock-on-right .exam-clock-panel { grid-column: 2; grid-row: 1; }
+.clock-on-right .exam-clock-notes { grid-column: 1; grid-row: 1; border-left: 0; padding-left: 0; border-right: 1px solid #202020; padding-right: clamp(24px, 4vw, 72px); }
+.exam-clock-footer { min-height: 58px; display: flex; justify-content: space-between; align-items: center; gap: 18px; color: #6c6c6c; font-size: 10px; letter-spacing: 1px; border-top: 1px solid #202020; }
+.exam-clock-footer span:first-child { letter-spacing: .3px; }
+.exam-clock-restore { position: fixed; top: 15px; right: 18px; z-index: 5; background: #141414; border: 1px solid #333; border-radius: 8px; display: flex; align-items: center; gap: 8px; color: #999; font-size: 11px !important; padding: 9px 13px; opacity: .35; }
+.exam-clock-restore:hover, .exam-clock-restore:focus-visible { opacity: 1; }
+.is-focused .exam-clock-toolbar, .is-focused .exam-clock-footer, .is-focused .exam-clock-note-label { display: none; }
+.is-focused .exam-clock-workspace { padding: 60px 0; }
+.is-focused .exam-clock-face { width: min(100%, calc(100dvh - 170px)); }
+.is-fullscreen .exam-clock-workspace { padding: 42px 0; }
+.is-fullscreen .exam-clock-face { width: min(100%, calc(100dvh - 100px)); }
+.exam-clock-notice { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 90vw; padding: 14px 20px; border: 1px solid #404040; background: #202020; color: #fff; border-radius: 8px; font-size: 13px; z-index: 10; }
+.exam-clock-notice button { border: 0; background: none; color: #fff; margin-left: 16px; font-size: 20px; }
+@media (max-width: 700px) {
+  .exam-clock-layout .exam-clock-page:not(.is-fullscreen) { height: auto; }
+  .exam-clock-page { height: auto; min-height: 100dvh; }
+  .exam-clock-toolbar { flex-wrap: wrap; padding: 22px 0; gap: 18px; min-height: 0; }
+  .exam-clock-brand { width: 100%; }
+  .exam-clock-controls { gap: 10px; }
+  .exam-clock-workspace { flex: none; grid-template-columns: 1fr; padding: 35px 0; gap: 58px; }
+  .exam-clock-face, .is-focused .exam-clock-face { width: min(90%, 410px); }
+  .exam-clock-panel, .clock-on-right .exam-clock-panel { grid-column: 1; grid-row: 1; }
+  .exam-clock-notes, .clock-on-right .exam-clock-notes { grid-column: 1; grid-row: 2; border: 0; border-top: 1px solid #202020; padding: 24px 0 0; height: 380px; gap: 20px; }
+  .exam-clock-footer { flex-wrap: wrap; padding: 18px 0; gap: 10px; }
+}

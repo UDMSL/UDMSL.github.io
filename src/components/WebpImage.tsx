@@ -13,7 +13,7 @@ type WebpImageProps = ImgHTMLAttributes<HTMLImageElement> & {
  * Renders an image that prefers WebP and gracefully falls back to the original
  * source (and an optional extra fallback) on error.
  */
-const WebpImage = ({ src = '', fallbackSrc, onError, ...rest }: WebpImageProps) => {
+const WebpImage = ({ src = '', fallbackSrc, onError, loading = 'lazy', decoding = 'async', ...rest }: WebpImageProps) => {
   const sourceQueue = useMemo(() => {
     const queue: string[] = []
     const original = src.trim()
@@ -30,24 +30,19 @@ const WebpImage = ({ src = '', fallbackSrc, onError, ...rest }: WebpImageProps) 
   const [sourceState, setSourceState] = useState(() => ({ key: queueKey, index: 0 }))
 
   const handleError: React.ReactEventHandler<HTMLImageElement> = (event) => {
-    setSourceState((prev) => {
-      const baseIndex = prev.key === queueKey ? prev.index : 0
-      const nextIndex = baseIndex + 1
-
-      if (nextIndex < sourceQueue.length) {
-        return { key: queueKey, index: nextIndex }
-      }
-
-      // Allow caller-specific error handling once all fallbacks are exhausted.
+    const nextIndex = currentIndex + 1
+    if (nextIndex < sourceQueue.length) {
+      setSourceState({ key: queueKey, index: nextIndex })
+    } else {
+      // Event callbacks must run outside state updaters, which React can replay.
       onError?.(event)
-      return prev
-    })
+    }
   }
 
   const currentIndex = sourceState.key === queueKey ? sourceState.index : 0
   const currentSrc = sourceQueue[Math.min(currentIndex, sourceQueue.length - 1)] ?? ''
 
-  return <img src={currentSrc} onError={handleError} {...rest} />
+  return <img src={currentSrc || undefined} onError={handleError} loading={loading} decoding={decoding} {...rest} />
 }
 
 export default WebpImage

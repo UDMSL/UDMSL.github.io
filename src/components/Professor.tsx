@@ -50,12 +50,12 @@ const Professor = () => {
               </div>
             </div>
           </div>
-          <a
+          {professorProfile.cvLink && professorProfile.cvLink !== '#' && <a
             href={professorProfile.cvLink}
             className="mt-4 w-full block text-center bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold py-3 rounded-full transition-colors flex items-center justify-center gap-2 shadow-lg"
           >
             <FileText size={18} /> Download CV
-          </a>
+          </a>}
         </div>
 
         <Reveal className="w-full md:w-2/3 space-y-8" delay={35}>

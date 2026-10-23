@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Menu, X, Mail, Phone } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { generalInfo } from '../data/general'
@@ -20,6 +20,7 @@ const tabs: TabItem[] = [
   { id: 'Publications', label: 'Publications', path: '/publications' },
   { id: 'Gallery', label: 'Gallery', path: '/gallery' },
   { id: 'News', label: 'News', path: '/news' },
+  { id: 'Exam Clock', label: 'Exam Clock', path: '/exam-clock' },
 ]
 
 // NavLink에서 재사용하는 스타일 함수
@@ -37,29 +38,51 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const isClockPage = location.pathname === '/exam-clock'
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   // Ensure each tab change starts at top of page
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    const tab = tabs.find((item) => item.path === location.pathname)
+    document.title = `${tab?.label ?? 'Home'} | ${generalInfo.labShortName}`
   }, [location.pathname])
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [mobileMenuOpen])
+
   return (
-    <div className="min-h-screen flex flex-col bg-white font-sans text-gray-900">
+    <div className={`min-h-screen flex flex-col bg-white font-sans text-gray-900 ${isClockPage ? 'exam-clock-layout' : ''}`}>
+      <a href="#main-content" onClick={(event) => {
+        event.preventDefault()
+        document.getElementById('main-content')?.focus()
+      }} className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:p-3 focus:rounded-md">
+        Skip to main content
+      </a>
       {/* Navbar */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <nav aria-label="Main navigation" className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-16">
             {/* Logo */}
-            <NavLink to="/" className="flex items-center cursor-pointer gap-3">
-              <WebpImage src="/img/Emblem.png" alt="UDMS Lab Emblem" className="w-10 h-10 object-contain" />
+            <NavLink to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center cursor-pointer gap-3">
+              <WebpImage src="/img/Emblem.png" alt="UDMS Lab Emblem" loading="eager" width={40} height={40} className="w-10 h-10 object-contain" />
               <div className="flex flex-col">
                 <span className="font-bold text-2xl text-primary leading-none">{generalInfo.labShortName}</span>
-                <span className="text-xs text-gray-500 hidden md:block">{generalInfo.labName}</span>
+                <span className="text-xs text-gray-500 hidden xl:block">{generalInfo.labName}</span>
               </div>
             </NavLink>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-1 h-full items-center">
+            <div className="hidden lg:flex space-x-1 h-full items-center">
               {tabs.map((tab) => (
                 <NavLink key={tab.id} to={tab.path} className={linkClass} end={tab.path === '/'}>
                   {tab.label}
@@ -68,8 +91,8 @@ const Layout = ({ children }: LayoutProps) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center md:hidden">
-              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-600 hover:text-primary p-2">
+            <div className="flex items-center lg:hidden">
+              <button ref={menuButtonRef} type="button" aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-600 hover:text-primary p-2">
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
@@ -78,7 +101,7 @@ const Layout = ({ children }: LayoutProps) => {
 
         {/* Mobile Dropdown: 클릭 시 자동 닫히도록 onClick 처리 */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+          <div id="mobile-navigation" className="lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {tabs.map((tab) => (
                 <NavLink
@@ -101,10 +124,10 @@ const Layout = ({ children }: LayoutProps) => {
       </nav>
 
       {/* Main Content */}
-      <main className="flex-grow">{children}</main>
+      <main id="main-content" tabIndex={-1} className="flex-grow">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-dark text-gray-300 py-8 mt-12">
+      {!isClockPage && <footer className="bg-dark text-gray-300 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-6 space-y-1">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div className="space-y-1">
@@ -156,10 +179,10 @@ const Layout = ({ children }: LayoutProps) => {
             <p className="flex items-center gap-2">
               <Phone size={14} /> {professorProfile.phone}
             </p>
-            <p className="text-sm text-gray-500">© 2025 UDMS Lab. All Rights Reserved.</p>
+            <p className="text-sm text-gray-500">© {new Date().getFullYear()} UDMS Lab. All Rights Reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer>}
     </div>
   )
 }

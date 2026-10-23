@@ -12,6 +12,7 @@ import Research from './components/Research'
 import Publications from './components/Publications'
 import Gallery from './components/Gallery'
 import News from './components/News'
+import ExamClock from './components/ExamClock'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/publications" element={<Publications />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/news" element={<News />} />
+            <Route path="/exam-clock" element={<ExamClock />} />
             {/* Fallback keeps unknown paths from breaking the SPA */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

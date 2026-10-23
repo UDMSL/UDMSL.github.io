@@ -6,6 +6,7 @@ const Research = () => {
   return (
     <div className="max-w-7xl mx-auto py-12 px-6 space-y-8">
       <div className="text-center space-y-3">
+        <h2 className="text-3xl font-bold text-gray-900">Research</h2>
       </div>
       <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
         <Reveal className="glass-panel rounded-2xl overflow-hidden shadow-xl border border-gray/70 transition-transform" variant="slide-left">
