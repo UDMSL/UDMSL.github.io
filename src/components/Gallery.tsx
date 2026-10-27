@@ -1,33 +1,6 @@
-import { galleryImages } from '../data/gallery'
-import WebpImage from './WebpImage'
-import Reveal from './Reveal'
-
-// Simple grid, no pagination because dataset is small
-
-const Gallery = () => {
-  return (
-    <div className="max-w-7xl mx-auto py-12 px-6">
-      <Reveal className="flex items-center justify-between mb-6">
-        <div className="space-y-2">
-          <h2 className="text-3xl font-bold text-gray-900">Gallery</h2>
-        </div>
-      </Reveal>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {galleryImages.map((item, idx) => (
-          <Reveal key={item.slug} delay={idx * 20} className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] glass-panel">
-            <WebpImage
-              src={item.img}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-              <span className="text-white font-medium text-lg">{item.title}</span>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  )
+import { galleryImages } from '../data/gallery';
+import WebpImage from './WebpImage';
+import PageIntro from './PageIntro';
+export default function Gallery() {
+    return <div className="site-container editorial-page"><PageIntro label="" title="Gallery"/><div className="gallery-grid">{galleryImages.map(item => <figure key={item.slug}><a href={item.img} target="_blank" rel="noopener noreferrer" aria-label={`${'사진 크게 보기'}: ${item.title}`}><WebpImage src={item.img} alt={item.title}/></a><figcaption><h2>{item.title}</h2><time dateTime={item.date}>{item.date}</time></figcaption></figure>)}</div></div>;
 }
-
-export default Gallery

@@ -4,6 +4,7 @@ import App from './App'
 
 // Pull in Tailwind layers before rendering
 import './index.css'
+import './redesign.css'
 
 const rootElement = document.getElementById('root')
 
