@@ -95,27 +95,3 @@ test('publishing creates one atomic content+image commit and never force-updates
   assert.ok(calls.every(c=>c.url.startsWith('https://api.github.com/repos/UDMSL/UDMSL.github.io/')))
  }finally{globalThis.fetch=original}
 })
-
-const {startWriteCheck,restoreWriteCheck}=await import(await moduleURL('../src/admin/writeCheck.ts',{'./content':contentURL}))
-test('live write check adds exactly four entries and restores exact original content',async()=>{
- const oldStorage=globalThis.localStorage
- const storage=new Map()
- globalThis.localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)}
- let files=structuredClone(base)
- let head='original'
- const calls=[]
- const client={load:async()=>({files:structuredClone(files),head}),publish:async(expected,changes,uploads)=>{
-  assert.equal(expected,head);assert.deepEqual(uploads,[]);calls.push(changes)
-  for(const [path,content]of Object.entries(changes)){if(content===null)delete files[path];else files[path]=content}
-  head=`head-${calls.length}`;return head
- }}
- try{
-  await startWriteCheck(client)
-  assert.equal(Object.keys(calls[0]).length,4)
-  assert.equal(readEntries(files).length,entries.length+4)
-  const restored=await restoreWriteCheck(client)
-  assert.deepEqual(restored.files,base)
-  assert.deepEqual(files,base)
-  assert.equal(storage.size,0)
- }finally{globalThis.localStorage=oldStorage}
-})

@@ -4,7 +4,6 @@ import { Plus, Search, Trash2, Upload, Download, ArrowUpRight, Check, LockKeyhol
 import { buildFiles, changedPaths, createEntry, labels, parseBackup, readEntries, validateEntries, type Draft, type Entry, type Kind } from './content'
 import { GitHubContent } from './github'
 import { splitCitation } from '../utils/citation'
-import { pendingWriteCheck, startWriteCheck, restoreWriteCheck } from './writeCheck'
 import ContentPreview from './ContentPreview'
 import './admin.css'
 
@@ -113,21 +112,6 @@ export default function Admin() {
     if(!dirty){setNotice('게시할 변경사항이 없습니다.');return}
     setError('');setReview(true)
   }
-  const liveWriteCheck = async (restore: boolean) => {
-    if (!client.current) { setError('먼저 GitHub에 연결해 주세요.'); return }
-    setBusy(restore ? '점검 전 내용으로 원상복구하는 중' : '네 가지 콘텐츠를 실제로 게시하고 다시 읽어 확인하는 중'); setError('')
-    try {
-      if(restore){
-        const result=await restoreWriteCheck(client.current)
-        setDraft(d=>Object.keys({...d.base,...result.before}).every(path=>d.base[path]===result.before[path]) ? {...d,head:result.head} : d)
-        setCommit(result.head);setNotice('원상복구 완료. 점검 전 콘텐츠와 일치함을 다시 읽어 확인했습니다. 작성 중인 초안은 그대로 유지했습니다. 자동 배포 완료 후 공개 화면도 복구됩니다.')
-      }else{
-        const sha=await startWriteCheck(client.current)
-        setCommit(sha);setNotice('구성원·논문·갤러리·뉴스 임시 항목 네 개의 실제 저장 및 다시 읽기 검증에 성공했습니다. 공개 배포 확인 후 반드시 점검 원상복구를 실행하세요. 작성 중인 초안은 변경하지 않았습니다.')
-      }
-    }catch(e){setError(e instanceof Error?e.message:'쓰기 점검에 실패했습니다. 복구 정보를 확인해 주세요.')}
-    finally{setBusy('')}
-  }
   const previewImage = entry && entry.fields[imageKey(entry)]
   const uploaded = activeUploads.find(u=>u.path.replace(/^public/,'')===previewImage)
   const safeImage = previewImage && (/^https?:\/\//i.test(previewImage)||/^\/img\//.test(previewImage)) ? uploaded?`data:${uploaded.mime};base64,${uploaded.base64}`:previewImage.startsWith('/img/')&&connected?`https://udmsl.github.io${previewImage}`:previewImage : ''
@@ -137,7 +121,6 @@ export default function Admin() {
     <details className="admin-connect" open={!connected}><summary><LockKeyhole size={17}/>{connected?'GitHub 연결됨 · UDMSL/UDMSL.github.io':'1. GitHub 연결 · 게시 권한이 있는 담당자만 사용'}</summary><div><p>GitHub의 Fine-grained personal access token을 사용합니다. 저장소는 <strong>UDMSL.github.io</strong> (Resource owner: UDMSL), 권한은 <strong>Contents: Read and write</strong>로 선택하세요. 연결 키는 현재 화면의 메모리에만 보관하며 초안·내보내기 파일에 저장하지 않습니다. 새로고침하면 다시 연결해야 합니다.</p><a className="text-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">GitHub 연결 키 만들기 <ArrowUpRight size={15}/></a><div className="admin-connect-row"><label>GitHub 연결 키<input ref={tokenInput} type="password" autoComplete="off" spellCheck={false} value={token} onChange={e=>setToken(e.target.value)} placeholder="github_pat_…" disabled={!!busy}/></label><button type="button" className="admin-primary" onClick={connect} disabled={!!busy}>{connected?'다시 연결 / 최신 내용 불러오기':'연결하고 최신 내용 불러오기'}</button>{connected&&<button onClick={()=>{client.current=null;setConnected(false);setToken('');setNotice('연결을 해제했습니다. 초안은 유지됩니다.')}} disabled={!!busy}>연결 해제</button>}</div><p className="admin-hint">기관 계정의 승인이 필요할 수 있습니다. 연결 없이도 현재 콘텐츠로 편집을 시험하고 초안을 내보낼 수 있습니다. <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noopener noreferrer">연결 키 안내</a></p></div></details>
     <div className="admin-toolbar"><span className="admin-status"><Check size={15}/>{storageError?'자동 저장 실패 — 초안을 내보내 주세요':dirty?'변경사항을 이 브라우저에 초안으로 저장했습니다':'저장된 내용과 같습니다'}{!connected&&' · 연결 전 편집 모드'}</span><div><button onClick={()=>{if(window.confirm('현재 초안의 변경사항을 모두 취소하고 마지막으로 불러온 내용으로 되돌릴까요?')){setDraft(d=>({...d,entries:readEntries(d.base),uploads:[]}));setSelected('');setDeleted(null);setError('');setNotice('초안 변경사항을 취소했습니다.')}}} disabled={!!busy||!dirty}>초안 변경 취소</button><button onClick={()=>download(draft)} disabled={!!busy}><Download size={16}/>초안 내보내기</button><button onClick={()=>importInput.current?.click()} disabled={!!busy}><Upload size={16}/>초안 가져오기</button><input ref={importInput} type="file" accept="application/json,.json" hidden onChange={e=>{void importDraft(e.target.files?.[0]);e.target.value=''}}/><button className="admin-primary" onClick={reviewChanges} disabled={!!busy||!dirty}>변경 검토 및 게시</button></div></div>
     {(notice||error||busy||storageError)&&<div className={`admin-message ${error||storageError?'is-error':''}`} role={error?'alert':'status'}>{busy||error||notice}{storageError&&<p>브라우저 저장 공간이 부족합니다. 사진이 포함된 초안을 내보내 보관하세요.</p>}{commit&&<p><a href={`https://github.com/UDMSL/UDMSL.github.io/commit/${commit}`} target="_blank" rel="noopener noreferrer">저장 내역</a> · <a href="https://github.com/UDMSL/UDMSL.github.io/actions" target="_blank" rel="noopener noreferrer">배포 상태 확인</a> · <a href="https://udmsl.github.io/" target="_blank" rel="noopener noreferrer">공개 홈페이지</a></p>}</div>}
-    <details className="admin-connect"><summary>실제 게시 기능 점검 및 원상복구</summary><div><p>네 종류의 임시 항목을 GitHub에 실제 게시하고, 다시 읽어 저장 여부를 검사합니다. 공개 사이트에도 일시적으로 표시됩니다. 확인 후 원상복구하세요. 작성 중인 초안은 그대로 유지됩니다.</p><div className="admin-connect-row"><button onClick={()=>liveWriteCheck(false)} disabled={!!busy||!connected||!!pendingWriteCheck()}>네 항목 실제 쓰기 점검</button><button onClick={()=>liveWriteCheck(true)} disabled={!!busy||!connected||!pendingWriteCheck()}>점검 원상복구</button></div></div></details>
     <div className="admin-tabs" role="group" aria-label="콘텐츠 종류">{(Object.keys(labels) as Kind[]).map(k=><button key={k} aria-pressed={kind===k} onClick={()=>{setKind(k);setSelected('');setQuery('')}} disabled={!!busy}>{labels[k]} <span>{draft.entries.filter(e=>e.kind===k).length}</span></button>)}</div>
     <div className="admin-workspace" aria-busy={!!busy}>
       <aside className="admin-list"><div className="admin-list-top"><h2>{labels[kind]}</h2><button aria-label={`${labels[kind]} 추가`} onClick={()=>{const added=createEntry(kind);setDraft(d=>({...d,entries:[added,...d.entries]}));setSelected(added.id);setQuery('')}} disabled={!!busy}><Plus size={17}/>추가</button></div><label className="admin-search"><Search size={16}/><input aria-label="항목 검색" placeholder="이름 또는 제목 검색" value={query} onChange={e=>{setQuery(e.target.value);setSelected('')}}/></label><div className="admin-entry-list">{visible.map(item=><button key={item.id} aria-pressed={entry?.id===item.id} onClick={()=>setSelected(item.id)} disabled={!!busy}><strong>{displayName(item)}</strong><span>{item.kind==='members'?(item.path.includes('/alumni/')?'Alumni':'Current Members')+' · '+item.fields.degree:item.fields.year||item.fields.date}</span></button>)}{!visible.length&&<p className="admin-empty">항목이 없습니다. ‘추가’를 눌러 새 항목을 만드세요.</p>}</div>{deleted&&<button className="admin-undo" onClick={()=>{setDraft(d=>({...d,entries:[...d.entries,deleted]}));setSelected(deleted.id);setDeleted(null)}} disabled={!!busy}><Undo2 size={16}/>방금 삭제한 항목 복원</button>}</aside>

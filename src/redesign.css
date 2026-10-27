@@ -580,6 +580,15 @@ html[lang=en] .hero-copy h1{font-size:clamp(34px,4vw,60px);letter-spacing:-.055e
 .member-name-row .member-photo-fallback>span{font-size:24px}
 .member-name-row .member-photo-fallback>small{display:none}
 @media(max-width:640px){.member-name-row .member-photo-frame{width:76px;height:76px;flex-basis:76px}.member-name-row h3{font-size:22px}}
-.lab-name-line{display:block;white-space:nowrap}
-.hero-copy h1.original-lab-title{font-size:clamp(18px,2.8vw,43px)}
-@media(max-width:640px){.hero-copy h1.original-lab-title{font-size:clamp(18px,5.4vw,30px)}}
+.lab-name-line{display:inline;white-space:nowrap}
+.hero-copy h1.original-lab-title{font-size:clamp(10px,1.55vw,25px);margin:20px 0 18px;white-space:nowrap}
+@media(max-width:640px){.hero-copy h1.original-lab-title{font-size:clamp(10px,3.25vw,20px)}}
+
+/* A slimmer header and hero accompany the single-line laboratory name. */
+.site-shell:not(.exam-clock-layout) .nav-inner{height:64px}
+.brand-subtitle{max-width:none;white-space:nowrap;line-height:1.3}
+.home-hero{min-height:390px}
+.hero-copy{padding-top:42px;padding-bottom:28px}
+.hero-description{font-size:18px;margin-bottom:20px}
+@media(max-width:1023px){.home-hero{min-height:340px}.hero-copy{padding-top:32px}}
+@media(max-width:640px){.site-shell:not(.exam-clock-layout) .nav-inner{height:60px}.home-hero{min-height:0}.hero-copy{padding-top:28px;padding-bottom:24px}.hero-image{height:230px;min-height:230px}.hero-description{font-size:16px;margin-bottom:16px}}
