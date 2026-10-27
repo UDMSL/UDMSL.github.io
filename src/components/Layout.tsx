@@ -1,3 +1,4 @@
+import LabName from './LabName'
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Menu, X, Mail, Phone, Moon, Sun, Timer } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -45,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
         const tab = tabs.find((item) => item.path === location.pathname);
-        document.title = `${tab?.label ?? (isClockPage ? 'Exam Clock' : 'Home')} | ${generalInfo.labShortName}`;
+        document.title = `${tab?.label ?? (isClockPage ? 'Exam Clock' : location.pathname === '/admin' ? '콘텐츠 관리' : 'Home')} | ${generalInfo.labShortName}`;
     }, [location.pathname, location.hash, location.key, isClockPage]);
     useEffect(() => {
         if (!mobileMenuOpen)
@@ -73,7 +74,7 @@ const Layout = ({ children }: LayoutProps) => {
               <WebpImage src="/img/Emblem.png" alt="UDMS Lab Emblem" loading="eager" width={40} height={40} className="w-10 h-10 object-contain"/>
               <div className="flex flex-col">
                 <span className="font-bold text-2xl text-primary leading-none">{generalInfo.labShortName}</span>
-                <span className="brand-subtitle">{generalInfo.labName}</span>
+                <span className="brand-subtitle"><LabName name={generalInfo.labName} /></span>
               </div>
             </NavLink>
 
@@ -148,7 +149,7 @@ const Layout = ({ children }: LayoutProps) => {
             <p className="flex items-center gap-2">
               <Phone size={14}/> {professorProfile.phone}
             </p>
-            <p className="text-sm text-gray-500">© {new Date().getFullYear()} UDMS Lab. All Rights Reserved.</p>
+            <p className="text-sm text-gray-500">© {new Date().getFullYear()} UDMS Lab. All Rights Reserved. <NavLink to="/admin" className="ml-3 underline">콘텐츠 관리</NavLink></p>
           </div>
         </div>
       </footer>}

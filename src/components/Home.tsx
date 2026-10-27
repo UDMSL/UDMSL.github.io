@@ -1,3 +1,4 @@
+import LabName from './LabName'
 import { generalInfo } from '../data/general'
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
@@ -9,7 +10,7 @@ export default function Home() {
     const methods = researchData.highlights;
     return <div className="home-editorial">
     <section className="home-hero">
-      <div className="hero-copy"><p className="eyebrow">UDMS Lab.</p><h1 className="original-lab-title">{generalInfo.labName}</h1><p className="hero-description">{generalInfo.affiliation}</p><Link className="primary-link" to="/research">Research <ArrowUpRight size={18}/></Link></div>
+      <div className="hero-copy"><p className="eyebrow">UDMS Lab.</p><h1 className="original-lab-title"><LabName name={generalInfo.labName} /></h1><p className="hero-description">{generalInfo.affiliation}</p><Link className="primary-link" to="/research">Research <ArrowUpRight size={18}/></Link></div>
       <figure className="hero-image"><img src="/img/redesign/laser-hero-selected.png" alt={"보라색 레이저와 렌즈가 배치된 광학 실험 장치"} width="1536" height="1024" fetchPriority="high"/></figure>
     </section>
     <div className="site-container"><Recruitment /></div>

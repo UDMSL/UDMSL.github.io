@@ -60,3 +60,7 @@ F11 또는 전체 화면 버튼으로 진입하면 설정·하단 정보를 숨�
 ### License
 - Code: MIT © Wonwoo Shin@UDMSL, Inha University
 - Images, Logos, and Documents: CC BY-NC 4.0
+
+## 웹 관리 화면
+
+코딩 없이 구성원·논문·갤러리·뉴스를 수정하는 화면은 `/#/admin`입니다. 로컬에서 시험 편집, 초안 저장·백업, 이미지 업로드 및 내용 미리보기를 사용할 수 있습니다. GitHub 저장 권한이 있는 담당자가 연결 키로 연결하고 변경 검토 후 게시하면 단일 커밋으로 저장되고 기존 Actions로 자동 배포됩니다. 연결 키는 메모리에만 보관합니다. 자세한 사용법은 [콘텐츠 관리 안내](CONTENT-MANAGEMENT.md)를 참고하세요.
